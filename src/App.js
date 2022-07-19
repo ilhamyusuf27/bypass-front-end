@@ -10,6 +10,8 @@ import WithoutNavFooter from "./Components/NavFooterWrapper/WithoutNavFooter";
 import WithNavFooter from "./Components/NavFooterWrapper/WithNavFooter";
 import NotFound from "./Pages/NotFound/NotFound";
 import ProfileEmployee from "./Pages/ProfileEmployee/ProfileEmployee";
+import Register from "./Pages/Register/Register";
+import CompanyRegister from "./Pages/Register/CompanyRegis";
 
 function App() {
 	return (
@@ -18,9 +20,9 @@ function App() {
 				{/* page with no navbar and footer */}
 				<Route element={<WithoutNavFooter />}>
 					<Route path="login" element={<Login />} />
-					<Route path="register" element={<Login />} />
+					<Route path="register" element={<Register />} />
 					<Route path="*" element={<NotFound />} />
-					<Route path="login" element={<Login />} />
+					<Route path="register-company" element={<CompanyRegister />} />
 				</Route>
 
 				{/* page with navbar and footer */}
