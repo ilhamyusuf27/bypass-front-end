@@ -24,7 +24,7 @@ const Home = () => {
           />
           <DropdownButton
             variant="light"
-            title="Kategori"
+            title="Sort"
             id="input-group-dropdown-2"
             align="end"
           >
