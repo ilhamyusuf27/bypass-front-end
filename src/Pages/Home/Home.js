@@ -28,9 +28,11 @@ const Home = () => {
             id="input-group-dropdown-2"
             align="end"
           >
-            <Dropdown.Item href="#">Web Developer</Dropdown.Item>
-            <Dropdown.Item href="#">Mobile Developer</Dropdown.Item>
-            <Dropdown.Item href="#">Fullstack Developer</Dropdown.Item>
+            <Dropdown.Item href="#">Sortir Berdasarkan Nama</Dropdown.Item>
+            <Dropdown.Item href="#">Sortir Berdasarkan Skill</Dropdown.Item>
+            <Dropdown.Item href="#">Sortir Berdasarkan Lokasi</Dropdown.Item>
+            <Dropdown.Item href="#">Sortir Berdasarkan Freelance</Dropdown.Item>
+            <Dropdown.Item href="#">Sortir Berdasarkan Fulltime</Dropdown.Item>
           </DropdownButton>
           <Button variant="flat">Search</Button>
         </InputGroup>
