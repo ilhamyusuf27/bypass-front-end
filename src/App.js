@@ -19,6 +19,7 @@ function App() {
 					<Route path="login" element={<Login />} />
 					<Route path="register" element={<Login />} />
 					<Route path="*" element={<NotFound />} />
+					<Route path="login" element={<Login />} />
 				</Route>
 
 				{/* page with navbar and footer */}
