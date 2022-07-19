@@ -18,7 +18,10 @@ const Home = () => {
 
       <div className="wrapper-home mt-3">
         <InputGroup className="mb-3">
-          <Form.Control aria-label="Text input with dropdown button" />
+          <Form.Control
+            aria-label="Text input with dropdown button"
+            size="lg"
+          />
           <DropdownButton
             variant="light"
             title="Kategori"
