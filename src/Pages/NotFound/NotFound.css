@@ -1,0 +1,9 @@
+.not-found-wrapper {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
+
+.not-found-img {
+  width: 350px;
+}
