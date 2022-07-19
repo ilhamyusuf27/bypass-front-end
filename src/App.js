@@ -10,26 +10,22 @@ import WithNavFooter from "./Components/NavFooterWrapper/WithNavFooter";
 import NotFound from "./Pages/NotFound/NotFound";
 
 function App() {
-	return (
-		<BrowserRouter>
-			<Routes>
-				{/* Page login */}
-				<Route path="/">
-					<Route path="login" element={<Login />} />
-				</Route>
+  return (
+    <BrowserRouter>
+      <Routes>
+        {/* page without navbar and footer */}
+        <Route element={<WithoutNavFooter />}>
+          <Route path="*" element={<NotFound />} />
+          <Route path="login" element={<Login />} />
+        </Route>
 
-				{/* page with no navbar and footer */}
-				<Route element={<WithoutNavFooter />}>
-					<Route path="*" element={<NotFound />} />
-				</Route>
-
-				{/* page with navbar and footer */}
-				<Route element={<WithNavFooter />}>
-					<Route path="/home" element={<Home />} />
-				</Route>
-			</Routes>
-		</BrowserRouter>
-	);
+        {/* page with navbar and footer */}
+        <Route element={<WithNavFooter />}>
+          <Route path="/home" element={<Home />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;

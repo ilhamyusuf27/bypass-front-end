@@ -1,0 +1,30 @@
+.wrapper-home {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.header-home {
+  color: white;
+  background-color: #5e4fa1;
+}
+
+/* button */
+.btn-flat {
+  background-color: #5e4fa1;
+  color: white;
+}
+
+.btn-flat:hover {
+  color: white;
+  background-color: #503ea4;
+}
+/* button end*/
+
+.img-user-home {
+  clip-path: circle();
+  margin-left: 25px;
+}
+
+.body-user-home {
+  margin-left: 40px;
+}
