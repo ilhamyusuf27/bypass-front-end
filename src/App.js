@@ -1,6 +1,7 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Login from "./Pages/Login/Login";
+import Register from "./Pages/Register/Register";
+import CompanyRegis from "./Pages/Register/CompanyRegis";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -9,7 +10,8 @@ function App() {
       <BrowserRouter>
       <Routes>
         <Route path="/">
-          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="company-register" element={<CompanyRegis />} />
         </Route>
       </Routes>
     </BrowserRouter>

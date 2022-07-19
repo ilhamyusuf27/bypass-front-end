@@ -1,5 +1,5 @@
 import React from "react";
-import "./RightLogin.css";
+import "./RightRegister.css";
 
 function FormTitle(props) {
   const { title, desc } = props;
