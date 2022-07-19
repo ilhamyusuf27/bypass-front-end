@@ -16,6 +16,7 @@ function App() {
 				{/* page with no navbar and footer */}
 				<Route element={<WithoutNavFooter />}>
 					<Route path="login" element={<Login />} />
+					<Route path="register" element={<Login />} />
 					<Route path="*" element={<NotFound />} />
 				</Route>
 
