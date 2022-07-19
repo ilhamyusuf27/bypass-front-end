@@ -33,7 +33,10 @@ const Home = () => {
         </InputGroup>
         <div className="row">
           <div className="col-md-5">
-            <div className="card mb-3" style={{ maxWidth: "540px" }}>
+            <div
+              className="card mb-3"
+              style={{ maxWidth: "540px", border: "none" }}
+            >
               <div className="row g-0">
                 <div className="col-md-4">
                   <div>
@@ -71,9 +74,13 @@ const Home = () => {
             <Button variant="flat">Lihat Profile</Button>
           </div>
         </div>
+        <hr />
         <div className="row">
           <div className="col-md-5">
-            <div className="card mb-3" style={{ maxWidth: "540px" }}>
+            <div
+              className="card mb-3"
+              style={{ maxWidth: "540px", border: "none" }}
+            >
               <div className="row g-0">
                 <div className="col-md-4">
                   <div>
@@ -111,9 +118,13 @@ const Home = () => {
             <Button variant="flat">Lihat Profile</Button>
           </div>
         </div>
+        <hr />
         <div className="row">
           <div className="col-md-5">
-            <div className="card mb-3" style={{ maxWidth: "540px" }}>
+            <div
+              className="card mb-3"
+              style={{ maxWidth: "540px", border: "none" }}
+            >
               <div className="row g-0">
                 <div className="col-md-4">
                   <div>
@@ -151,9 +162,13 @@ const Home = () => {
             <Button variant="flat">Lihat Profile</Button>
           </div>
         </div>
+        <hr />
         <div className="row">
           <div className="col-md-5">
-            <div className="card mb-3" style={{ maxWidth: "540px" }}>
+            <div
+              className="card mb-3"
+              style={{ maxWidth: "540px", border: "none" }}
+            >
               <div className="row g-0">
                 <div className="col-md-4">
                   <div>
