@@ -12,11 +12,12 @@ import NotFound from "./Pages/NotFound/NotFound";
 function App() {
 	return (
 		<BrowserRouter>
-			{/* Page login */}
-			<Route path="/">
-				<Route path="login" element={<Login />} />
-			</Route>
 			<Routes>
+				{/* Page login */}
+				<Route path="/">
+					<Route path="login" element={<Login />} />
+				</Route>
+
 				{/* page with no navbar and footer */}
 				<Route element={<WithoutNavFooter />}>
 					<Route path="*" element={<NotFound />} />
