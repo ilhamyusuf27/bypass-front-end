@@ -9,6 +9,7 @@ import ProfileCompany from "./Pages/ProfileCompany/ProfileCompany";
 import WithoutNavFooter from "./Components/NavFooterWrapper/WithoutNavFooter";
 import WithNavFooter from "./Components/NavFooterWrapper/WithNavFooter";
 import NotFound from "./Pages/NotFound/NotFound";
+import ProfileEmployee from "./Pages/ProfileEmployee/ProfileEmployee";
 
 function App() {
 	return (
@@ -26,6 +27,7 @@ function App() {
 				<Route element={<WithNavFooter />}>
 					<Route path="/profile-company" element={<ProfileCompany />} />
 					<Route path="/home" element={<Home />} />
+					<Route path="/profile-employee" element={<ProfileEmployee />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>
