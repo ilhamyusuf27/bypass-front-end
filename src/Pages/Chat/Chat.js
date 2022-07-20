@@ -22,13 +22,16 @@ function Chat() {
       <Container className="mb-5">
         <Row>
           <div className="col-lg-4 col-md-4 col-sm-12">
-            <Card className="card mt-5 empty-image">
+            <Card className="card mt-5 ">
+              <Card.Header as="h5">Chat</Card.Header>
+              <div className="empty-image">
                 <img src={EmptyChat} alt="" />
-              <div className="info m-3">
-                <div className="info">
-                  <h4>Belum ada chat</h4>
-                </div>
               </div>
+              <div className="info">
+                  <div className="info">
+                    <h4>Belum ada chat</h4>
+                  </div>
+                </div>
             </Card>
           </div>
           <div className="col-lg-8 col-md-8 col-sm-12">
