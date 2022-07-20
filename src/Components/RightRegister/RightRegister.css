@@ -1,0 +1,27 @@
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.link-forget {
+    text-decoration: none;
+    color: #000;
+}
+
+.link-register {
+    text-decoration: none;
+    color: #FBB017;
+}
+
+.btn-login {
+    color: white;
+    font-size: medium;
+}
+
+.btn-login:hover {
+    color: white;
+    font-size: larger;
+}

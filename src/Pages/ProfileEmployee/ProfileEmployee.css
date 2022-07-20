@@ -1,0 +1,64 @@
+.profile-employee-bg {
+  height: 35vh;
+  background-color: #5e50a1;
+}
+
+.profile-employee-img {
+  width: 220px;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  clip-path: circle();
+}
+
+/* card portofolio */
+.card-employee {
+  width: 250px;
+  height: 150px;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 15px !important;
+  transition: transform 0.2s;
+}
+
+.card-employee:after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    180deg,
+    transparent 0,
+    transparent 65%,
+    rgb(55, 54, 54)
+  );
+  opacity: 0.6;
+}
+
+.card-employee:hover {
+  transform: scale(1.05);
+}
+
+.image-portofolio {
+  display: block;
+  position: absolute;
+  min-height: 100%;
+  min-width: 100%;
+}
+
+.name-portofolio {
+  position: absolute;
+  bottom: 3%;
+  left: 5%;
+  width: 50%;
+  text-align: left;
+  z-index: 4;
+  color: white;
+}
+/* card portofolio end */
+
+.img-experience-portofolio {
+  width: 100px;
+}
