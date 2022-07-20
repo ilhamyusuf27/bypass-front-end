@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./Pages/Login/Login";
 import Home from "./Pages/Home/Home";
 import ProfileCompany from "./Pages/ProfileCompany/ProfileCompany";
+import EditProfileCompany from "./Pages/EditProfileCompany/EditProfileCompany";
 import WithoutNavFooter from "./Components/NavFooterWrapper/WithoutNavFooter";
 import WithNavFooter from "./Components/NavFooterWrapper/WithNavFooter";
 import NotFound from "./Pages/NotFound/NotFound";
@@ -29,6 +30,7 @@ function App() {
 				{/* page with navbar and footer */}
 				<Route element={<WithNavFooter />}>
 					<Route path="/profile-company" element={<ProfileCompany />} />
+					<Route path="/edit-profile-company" element={<EditProfileCompany />} />
 					<Route path="/home" element={<Home />} />
 					<Route path="/profile-employee" element={<ProfileEmployee />} />
 					<Route path="hire" element={<Hire />} />
