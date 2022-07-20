@@ -27,7 +27,7 @@ const ProfileEmployee = () => {
                     alt="..."
                   />
                 </div>
-                <div className="card-body">
+                <div className="card-body mb-3">
                   <h5 className="card-title">Louis Tomlinson</h5>
                   <p>Web Developer</p>
                   <p className="card-text">
