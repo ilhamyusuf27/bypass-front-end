@@ -50,7 +50,7 @@ function Hire() {
 						<Form>
 							<Form.Group className="mb-4" controlId="formBasicEmail">
 								<Form.Text className="text-muted">Tujuan tentang pesan ini</Form.Text>
-								<Form.Select aria-label="Default select example">
+								<Form.Select aria-label="Default select example" size="lg">
 									<option>Project</option>
 									<option value="1">One</option>
 									<option value="2">Two</option>
@@ -60,22 +60,22 @@ function Hire() {
 
 							<Form.Group className="mb-4" controlId="fullname">
 								<Form.Text className="text-muted">Nama Lengkap</Form.Text>
-								<Form.Control type="text" placeholder="Masukan nama lengkap" />
+								<Form.Control type="text" placeholder="Masukan nama lengkap" size="lg" />
 							</Form.Group>
 
 							<Form.Group className="mb-4" controlId="email">
 								<Form.Text className="text-muted">Email</Form.Text>
-								<Form.Control type="email" placeholder="Masukan email" />
+								<Form.Control type="email" placeholder="Masukan email" size="lg" />
 							</Form.Group>
 
 							<Form.Group className="mb-4" controlId="phone-number">
 								<Form.Text className="text-muted">No Handphone</Form.Text>
-								<Form.Control type="email" placeholder="Masukan no handphone" />
+								<Form.Control type="email" placeholder="Masukan no handphone" size="lg" />
 							</Form.Group>
 
 							<Form.Group className="mb-5" controlId="exampleForm.ControlTextarea1">
 								<Form.Text className="text-muted">Deskripsi</Form.Text>
-								<Form.Control as="textarea" rows={8} placeholder="Deskripsikan/jelaskan lebih detail " />
+								<Form.Control as="textarea" rows={8} placeholder="Deskripsikan/jelaskan lebih detail" size="lg" />
 							</Form.Group>
 
 							<div className="d-grid gap-2">
