@@ -1,0 +1,16 @@
+.empty-header {
+    padding-bottom: 30px !important;
+}
+
+.info {
+    text-align: center;
+}
+
+.card {
+    height: 50vh;
+}
+
+.empty-image {
+    align-items: center;
+    justify-content: center;
+}
