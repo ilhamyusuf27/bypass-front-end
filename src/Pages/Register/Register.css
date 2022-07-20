@@ -1,0 +1,38 @@
+.App {
+  overflow: hidden;
+}
+
+.form-login {
+  /* align-items: center; */
+}
+
+.background {
+  background: url("../../Assets/Images/BgLogin.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: fit-content;
+}
+
+.opacity {
+
+  background-color: #5e50a1;
+  opacity: 0.6;
+  height: 100vh;
+  z-index: -1;
+}
+
+.logo-login {
+  position: absolute;
+  width: 125px;
+  left: 3%;
+  top: 3%;
+  opacity: 1 !important;
+}
+
+.tagline-login {
+  position: absolute;
+  left: 3%;
+  top: 30%;
+  color: white;
+  width: 35%;
+}
