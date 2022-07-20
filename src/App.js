@@ -12,6 +12,7 @@ import NotFound from "./Pages/NotFound/NotFound";
 import ProfileEmployee from "./Pages/ProfileEmployee/ProfileEmployee";
 import Register from "./Pages/Register/Register";
 import CompanyRegister from "./Pages/Register/CompanyRegis";
+import Chat from "./Pages/Chat/Chat";
 
 function App() {
 	return (
@@ -30,6 +31,7 @@ function App() {
 					<Route path="/profile-company" element={<ProfileCompany />} />
 					<Route path="/home" element={<Home />} />
 					<Route path="/profile-employee" element={<ProfileEmployee />} />
+					<Route path="/chat" element={<Chat />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>
