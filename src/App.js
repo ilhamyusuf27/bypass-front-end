@@ -13,6 +13,7 @@ import ProfileEmployee from "./Pages/ProfileEmployee/ProfileEmployee";
 import Register from "./Pages/Register/Register";
 import CompanyRegister from "./Pages/Register/CompanyRegis";
 import Chat from "./Pages/Chat/Chat";
+import ChatIsi from "./Pages/Chat/ChatIsi";
 
 function App() {
 	return (
@@ -32,6 +33,7 @@ function App() {
 					<Route path="/home" element={<Home />} />
 					<Route path="/profile-employee" element={<ProfileEmployee />} />
 					<Route path="/chat" element={<Chat />} />
+					<Route path="/chat-isi" element={<ChatIsi />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>
