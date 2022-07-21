@@ -15,7 +15,7 @@ function Hire() {
 							<div className="text-center">
 								<img src={employeeImg} className="card-img-top profile-employee-img" alt="..." />
 							</div>
-							<div className="card-body">
+							<div className="card-body mb-3">
 								<h5 className="card-title">Louis Tomlinson</h5>
 								<p>Web Developer</p>
 								<p className="card-text">
@@ -50,7 +50,7 @@ function Hire() {
 						<Form>
 							<Form.Group className="mb-4" controlId="formBasicEmail">
 								<Form.Text className="text-muted">Tujuan tentang pesan ini</Form.Text>
-								<Form.Select aria-label="Default select example" size="lg">
+								<Form.Select aria-label="Default select example" size="lg" className="text-muted">
 									<option>Project</option>
 									<option value="1">One</option>
 									<option value="2">Two</option>
