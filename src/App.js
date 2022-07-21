@@ -42,7 +42,8 @@ function App() {
             path="/edit-profile-employee"
             element={<EditProfileEmployee />}
           />
-		  
+          <Route path="/chat" element={<Chat />} />
+          <Route path="/chat-isi" element={<ChatIsi />} />
         </Route>
       </Routes>
     </BrowserRouter>
