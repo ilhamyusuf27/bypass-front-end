@@ -8,9 +8,11 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
 import { Container } from "react-bootstrap";
 import EmployeesList from "../../Components/EmployeesList/EmployeesList";
+import LoadingPage from "../../Components/LoadingPage/LoadingPage";
 
 const Home = () => {
   const [employeesList, setEmployeesList] = useState([]);
+  const [isLoading, setIsloading] = useState(true);
 
   useEffect(() => {
     getDataEmployees();
@@ -21,6 +23,7 @@ const Home = () => {
       .get(`${process.env.REACT_APP_URL_API}/user`)
       .then((res) => {
         setEmployeesList(res?.data?.user);
+        setIsloading(false);
       })
       .catch((err) => console.log(err));
   };
@@ -57,7 +60,11 @@ const Home = () => {
             </DropdownButton>
             <Button variant="flat">Search</Button>
           </InputGroup>
-          <EmployeesList employeesList={employeesList} />
+          {isLoading ? (
+            <LoadingPage />
+          ) : (
+            <EmployeesList employeesList={employeesList} />
+          )}
         </Container>
       </div>
     </>

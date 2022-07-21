@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Badge, Button } from "react-bootstrap";
 import { GoLocation } from "react-icons/go";
 import profileImg from "../../Assets/Images/profile image example.jpeg";
 
 const EmployeesList = (props) => {
-  console.log("props", props?.employeesList);
-
   const renderEmployeesList = () => {
     let jsx = props?.employeesList?.map((item) => {
       return (
@@ -50,7 +48,7 @@ const EmployeesList = (props) => {
               </div>
             </div>
           </div>
-          <hr />
+          <hr className="hr-home" />
         </>
       );
     });

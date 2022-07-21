@@ -65,3 +65,7 @@
   margin-left: 40px;
   margin-bottom: 20px;
 }
+
+.hr-home:last-of-type {
+  display: none;
+}
