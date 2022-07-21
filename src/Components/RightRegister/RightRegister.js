@@ -3,7 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import FormTitle from "./FormTitile";
 import { Link } from "react-router-dom";
 import "./RightRegister.css";
-import axios from "axios";
+// import axios from "axios";
 
 function RightLogin() {
 	const [nama, setNama] = React.useState("");
@@ -15,13 +15,13 @@ function RightLogin() {
 	const handleRegister = (e) => {
 		e.preventDefault();
 
-		axios.post("https://bypass-pijar.herokuapp.com/user/add", {
-			name: nama,
-			email,
-			phone_number: phone,
-			password,
-			confirm_pass: confirmPass,
-		}).then((res) => );
+		// axios.post("https://bypass-pijar.herokuapp.com/user/add", {
+		// 	name: nama,
+		// 	email,
+		// 	phone_number: phone,
+		// 	password,
+		// 	confirm_pass: confirmPass,
+		// }).then((res) =>;
 	};
 	return (
 		<>
