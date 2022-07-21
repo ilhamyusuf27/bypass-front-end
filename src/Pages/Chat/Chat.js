@@ -11,7 +11,7 @@ function Chat() {
       <Container className="mb-5">
         <Row>
           <div className="col-lg-4 col-md-4 col-sm-12">
-            <Card className="card mt-5 ">
+            <Card className="card mt-5 card-empty">
               <Card.Header as="h5">Chat</Card.Header>
               <div className="empty-image">
                 <img src={EmptyChat} alt="" />
@@ -24,7 +24,7 @@ function Chat() {
             </Card>
           </div>
           <div className="col-lg-8 col-md-8 col-sm-12">
-            <Card className="mt-5">
+            <Card className="mt-5 card-empty">
               <Card.Header as="h5" className="empty-header"></Card.Header>
               <Card.Body></Card.Body>
             </Card>
