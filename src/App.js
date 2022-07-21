@@ -13,6 +13,8 @@ import NotFound from "./Pages/NotFound/NotFound";
 import ProfileEmployee from "./Pages/ProfileEmployee/ProfileEmployee";
 import Register from "./Pages/Register/Register";
 import CompanyRegister from "./Pages/Register/CompanyRegis";
+import Chat from "./Pages/Chat/Chat";
+import ChatIsi from "./Pages/Chat/ChatIsi";
 import EditProfileEmployee from "./Pages/EditProfileEmployee/EditProfileEmployee";
 
 function App() {
@@ -40,6 +42,8 @@ function App() {
             path="/edit-profile-employee"
             element={<EditProfileEmployee />}
           />
+          <Route path="/chat" element={<Chat />} />
+          <Route path="/chat-isi" element={<ChatIsi />} />
         </Route>
       </Routes>
     </BrowserRouter>
