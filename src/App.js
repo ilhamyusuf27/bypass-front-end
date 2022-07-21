@@ -13,6 +13,7 @@ import NotFound from "./Pages/NotFound/NotFound";
 import ProfileEmployee from "./Pages/ProfileEmployee/ProfileEmployee";
 import Register from "./Pages/Register/Register";
 import CompanyRegister from "./Pages/Register/CompanyRegis";
+import LandingPage from "./Pages/LandingPage/LandingPage";
 
 function App() {
 	return (
@@ -32,6 +33,7 @@ function App() {
 					<Route path="/edit-profile-company" element={<EditProfileCompany />} />
 					<Route path="/home" element={<Home />} />
 					<Route path="/profile-employee" element={<ProfileEmployee />} />
+					<Route path="/" element={<LandingPage />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

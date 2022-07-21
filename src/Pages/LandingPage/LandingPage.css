@@ -1,0 +1,27 @@
+.start-now{
+    width: 100%;
+    height: 227px;
+
+    background: #5E50A1;
+    border-radius: 40px 8px;
+    margin-bottom: 5rem;
+    position: relative;
+}
+
+.button-start-now{
+    padding: 14px 19px !important;
+    background-color: white;
+    color: #796EAF;
+    font-weight: bold;
+}
+
+.overlay-start-now{
+    posistion:absolute;
+    bottom: 0;
+    z-index: 0;
+}
+
+.content-start-now{
+    position:absolute;
+    z-index: 1;
+}
