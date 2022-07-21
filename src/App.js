@@ -33,6 +33,7 @@ function App() {
 
 				{/* page with navbar and footer */}
 				<Route element={<WithNavFooter />}>
+					<Route path="/" element={<LandingPage />} />
 					<Route path="/profile-company" element={<ProfileCompany />} />
 					<Route path="/edit-profile-company" element={<EditProfileCompany />} />
 					<Route path="/home" element={<Home />} />
