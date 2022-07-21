@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Badge, Button } from "react-bootstrap";
 import { GoLocation } from "react-icons/go";
-import profileImg from "../../Assets/Images/profile image example.jpeg";
 
 const EmployeesList = (props) => {
   const renderEmployeesList = () => {
@@ -55,7 +54,6 @@ const EmployeesList = (props) => {
     return jsx;
   };
 
-  renderEmployeesList();
   return (
     <>
       <div

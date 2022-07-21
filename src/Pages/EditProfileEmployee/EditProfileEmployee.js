@@ -205,7 +205,7 @@ const EditProfileEmployee = () => {
             </div>
           </Container>
         </div>
-        <div className="row" style={{ minHeight: "190vh" }}></div>
+        <div className="row" style={{ minHeight: "1400px" }}></div>
       </div>
     </>
   );
