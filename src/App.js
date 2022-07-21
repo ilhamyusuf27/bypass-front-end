@@ -14,6 +14,10 @@ import ProfileEmployee from "./Pages/ProfileEmployee/ProfileEmployee";
 import Register from "./Pages/Register/Register";
 import CompanyRegister from "./Pages/Register/CompanyRegis";
 import LandingPage from "./Pages/LandingPage/LandingPage";
+import Chat from "./Pages/Chat/Chat";
+import ChatIsi from "./Pages/Chat/ChatIsi";
+import EditProfileEmployee from "./Pages/EditProfileEmployee/EditProfileEmployee";
+import Hire from "./Pages/Hire/Hire";
 
 function App() {
 	return (
@@ -34,6 +38,10 @@ function App() {
 					<Route path="/home" element={<Home />} />
 					<Route path="/profile-employee" element={<ProfileEmployee />} />
 					<Route path="/" element={<LandingPage />} />
+					<Route path="/edit-profile-employee" element={<EditProfileEmployee />} />
+					<Route path="/chat" element={<Chat />} />
+					<Route path="/chat-isi" element={<ChatIsi />} />
+					<Route path="hire" element={<Hire />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

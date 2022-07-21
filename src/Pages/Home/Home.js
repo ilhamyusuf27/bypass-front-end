@@ -8,30 +8,32 @@ import Button from "react-bootstrap/Button";
 import Badge from "react-bootstrap/Badge";
 import { GoLocation } from "react-icons/go";
 import profileImg from "../../Assets/Images/profile image example.jpeg";
+import { Container } from "react-bootstrap";
 
 const Home = () => {
 	return (
 		<>
-			<div className="row">
-				<h3 className="header-home py-3 wrapper-home">Top Jobs</h3>
+			<div className="header-home">
+				<Container>
+					<h3 className="py-3">Top Jobs</h3>
+				</Container>
 			</div>
-
-			<div className="wrapper-home mt-3">
-				<InputGroup className="mb-3">
-					<Form.Control aria-label="Text input with dropdown button" size="lg" />
-					<DropdownButton variant="light" title="Kategori" id="input-group-dropdown-2" align="end">
-						<Dropdown.Item href="#">Sortir Berdasarkan Nama</Dropdown.Item>
-						<Dropdown.Item href="#">Sortir Berdasarkan Skill</Dropdown.Item>
-						<Dropdown.Item href="#">Sortir Berdasarkan Lokasi</Dropdown.Item>
-						<Dropdown.Item href="#">Sortir Berdasarkan Freelance</Dropdown.Item>
-						<Dropdown.Item href="#">Sortir Berdasarkan Fulltime</Dropdown.Item>
-					</DropdownButton>
-					<Button variant="flat">Search</Button>
-				</InputGroup>
-				<div className="card mb-3" style={{ maxWidth: "100%", border: "none" }}>
-					<div className="row">
-						<div className="col-md-5">
-							<div className="card mb-3" style={{ maxWidth: "540px", border: "none" }}>
+			<div className="mt-3">
+				<Container>
+					<InputGroup className="mb-3">
+						<Form.Control aria-label="Text input with dropdown button" size="lg" />
+						<DropdownButton variant="light" title="Kategori" id="input-group-dropdown-2" align="end">
+							<Dropdown.Item href="#">Sortir Berdasarkan Nama</Dropdown.Item>
+							<Dropdown.Item href="#">Sortir Berdasarkan Skill</Dropdown.Item>
+							<Dropdown.Item href="#">Sortir Berdasarkan Lokasi</Dropdown.Item>
+							<Dropdown.Item href="#">Sortir Berdasarkan Freelance</Dropdown.Item>
+							<Dropdown.Item href="#">Sortir Berdasarkan Fulltime</Dropdown.Item>
+						</DropdownButton>
+						<Button variant="flat">Search</Button>
+					</InputGroup>
+					<div className="card mb-3 pb-2" style={{ maxWidth: "100%", border: "none" }}>
+						<div className="row mx-4">
+							<div className="col-md-5">
 								<div className="row g-0">
 									<div className="col-md-4">
 										<div>
@@ -60,17 +62,15 @@ const Home = () => {
 									</div>
 								</div>
 							</div>
-						</div>
-						<div className="col-md-7 d-flex justify-content-end align-items-center">
-							<div className="col-md-2 ">
-								<Button variant="flat">Lihat Profile</Button>
+							<div className="col-md-7 d-flex justify-content-end align-items-center">
+								<div className="col-md-2 ">
+									<Button variant="flat">Lihat Profile</Button>
+								</div>
 							</div>
 						</div>
-					</div>
-					<hr />
-					<div className="row">
-						<div className="col-md-5">
-							<div className="card mb-3" style={{ maxWidth: "540px", border: "none" }}>
+						<hr />
+						<div className="row mx-4">
+							<div className="col-md-5">
 								<div className="row g-0">
 									<div className="col-md-4">
 										<div>
@@ -99,17 +99,15 @@ const Home = () => {
 									</div>
 								</div>
 							</div>
-						</div>
-						<div className="col-md-7 d-flex justify-content-end align-items-center">
-							<div className="col-md-2 ">
-								<Button variant="flat">Lihat Profile</Button>
+							<div className="col-md-7 d-flex justify-content-end align-items-center">
+								<div className="col-md-2 ">
+									<Button variant="flat">Lihat Profile</Button>
+								</div>
 							</div>
 						</div>
-					</div>
-					<hr />
-					<div className="row">
-						<div className="col-md-5">
-							<div className="card mb-3" style={{ maxWidth: "540px", border: "none" }}>
+						<hr />
+						<div className="row mx-4">
+							<div className="col-md-5">
 								<div className="row g-0">
 									<div className="col-md-4">
 										<div>
@@ -138,14 +136,14 @@ const Home = () => {
 									</div>
 								</div>
 							</div>
-						</div>
-						<div className="col-md-7 d-flex justify-content-end align-items-center">
-							<div className="col-md-2 ">
-								<Button variant="flat">Lihat Profile</Button>
+							<div className="col-md-7 d-flex justify-content-end align-items-center">
+								<div className="col-md-2 ">
+									<Button variant="flat">Lihat Profile</Button>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+				</Container>
 			</div>
 		</>
 	);
