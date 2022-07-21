@@ -20,38 +20,32 @@ import Hire from "./Pages/Hire/Hire";
 import LandingPage from "./Pages/LandingPage/LandingPage";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        {/* page with no navbar and footer */}
-        <Route element={<WithoutNavFooter />}>
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
-          <Route path="*" element={<NotFound />} />
-          <Route path="register-company" element={<CompanyRegister />} />
-        </Route>
+	return (
+		<BrowserRouter>
+			<Routes>
+				{/* page with no navbar and footer */}
+				<Route element={<WithoutNavFooter />}>
+					<Route path="login" element={<Login />} />
+					<Route path="register" element={<Register />} />
+					<Route path="*" element={<NotFound />} />
+					<Route path="register-company" element={<CompanyRegister />} />
+				</Route>
 
-        {/* page with navbar and footer */}
-        <Route element={<WithNavFooter />}>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/profile-company" element={<ProfileCompany />} />
-          <Route
-            path="/edit-profile-company"
-            element={<EditProfileCompany />}
-          />
-          <Route path="/home" element={<Home />} />
-          <Route path="/profile-employee" element={<ProfileEmployee />} />
-          <Route
-            path="/edit-profile-employee"
-            element={<EditProfileEmployee />}
-          />
-          <Route path="/chat" element={<Chat />} />
-          <Route path="/chat-isi" element={<ChatIsi />} />
-          <Route path="hire" element={<Hire />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  );
+				{/* page with navbar and footer */}
+				<Route element={<WithNavFooter />}>
+					<Route path="/" element={<LandingPage />} />
+					<Route path="/profile-company" element={<ProfileCompany />} />
+					<Route path="/edit-profile-company" element={<EditProfileCompany />} />
+					<Route path="/home" element={<Home />} />
+					<Route path="/profile-employee" element={<ProfileEmployee />} />
+					<Route path="/edit-profile-employee" element={<EditProfileEmployee />} />
+					<Route path="/chat" element={<Chat />} />
+					<Route path="/chat-isi" element={<ChatIsi />} />
+					<Route path="hire" element={<Hire />} />
+				</Route>
+			</Routes>
+		</BrowserRouter>
+	);
 }
 
 export default App;
