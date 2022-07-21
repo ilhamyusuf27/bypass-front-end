@@ -13,6 +13,7 @@ import NotFound from "./Pages/NotFound/NotFound";
 import ProfileEmployee from "./Pages/ProfileEmployee/ProfileEmployee";
 import Register from "./Pages/Register/Register";
 import CompanyRegister from "./Pages/Register/CompanyRegis";
+import EditProfileEmployee from "./Pages/EditProfileEmployee/EditProfileEmployee";
 import Hire from "./Pages/Hire/Hire";
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
 					<Route path="/edit-profile-company" element={<EditProfileCompany />} />
 					<Route path="/home" element={<Home />} />
 					<Route path="/profile-employee" element={<ProfileEmployee />} />
+					<Route path="/edit-profile-employee" element={<EditProfileEmployee />} />
 					<Route path="hire" element={<Hire />} />
 				</Route>
 			</Routes>
