@@ -1,17 +1,15 @@
 import React from "react";
 
-import { Container } from "react-bootstrap";
-
+import LandingPage1 from "../../Components/LandingPage1/LandingPage1";
 import LandingPage2 from "../../Components/LandingPage2/LandingPage2";
 
-function LandingPage() {
+const LandingPage = () => {
 	return (
 		<>
-			<Container>
-				<LandingPage2 />
-			</Container>
+			<LandingPage1 />
+			<LandingPage2 />
 		</>
 	);
-}
+};
 
 export default LandingPage;

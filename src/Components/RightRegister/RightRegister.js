@@ -6,23 +6,23 @@ import "./RightRegister.css";
 // import axios from "axios";
 
 function RightLogin() {
-	const [nama, setNama] = React.useState("");
-	const [email, setEmail] = React.useState("");
-	const [phone, setPhone] = React.useState("");
-	const [password, setPassword] = React.useState("");
-	const [confirmPass, setConfirmPass] = React.useState("");
+	// const [nama, setNama] = React.useState("");
+	// const [email, setEmail] = React.useState("");
+	// const [phone, setPhone] = React.useState("");
+	// const [password, setPassword] = React.useState("");
+	// const [confirmPass, setConfirmPass] = React.useState("");
 
-	const handleRegister = (e) => {
-		e.preventDefault();
+	// const handleRegister = (e) => {
+	// 	e.preventDefault();
 
-		// axios.post("https://bypass-pijar.herokuapp.com/user/add", {
-		// 	name: nama,
-		// 	email,
-		// 	phone_number: phone,
-		// 	password,
-		// 	confirm_pass: confirmPass,
-		// }).then((res) =>;
-	};
+	// 	// axios.post("https://bypass-pijar.herokuapp.com/user/add", {
+	// 	// 	name: nama,
+	// 	// 	email,
+	// 	// 	phone_number: phone,
+	// 	// 	password,
+	// 	// 	confirm_pass: confirmPass,
+	// 	// }).then((res) =>;
+	// };
 	return (
 		<>
 			<div className="col-sm-6 col-lg-6 col-md-6 col-xl-6">
@@ -32,31 +32,31 @@ function RightLogin() {
 					<Form>
 						<Form.Group className="mb-3 pt-2 text-left">
 							<Form.Label>Nama</Form.Label>
-							<Form.Control type="text" size="md" placeholder="Masukkan nama panjang" value={nama} onChange={setNama} />
+							<Form.Control type="text" size="md" placeholder="Masukkan nama panjang" />
 						</Form.Group>
 
 						<Form.Group className="mb-3 pt-2 text-left">
 							<Form.Label>E-mail</Form.Label>
-							<Form.Control type="text" size="md" placeholder="Masukkan alamat email" value={email} onChange={setEmail} />
+							<Form.Control type="text" size="md" placeholder="Masukkan alamat email" />
 						</Form.Group>
 
 						<Form.Group className="mb-3 pt-2 text-left">
 							<Form.Label>No handphone</Form.Label>
-							<Form.Control type="text" size="md" placeholder="Masukkan no handphone" value={phone} onChange={setPhone} />
+							<Form.Control type="text" size="md" placeholder="Masukkan no handphone" />
 						</Form.Group>
 
 						<Form.Group className="mb-3 text-left">
 							<Form.Label>Kata Sandi</Form.Label>
-							<Form.Control type="password" size="lg" placeholder="Masukkan kata sandi" value={password} onChange={setPassword} />
+							<Form.Control type="password" size="lg" placeholder="Masukkan kata sandi" />
 						</Form.Group>
 
 						<Form.Group className="mb-3 text-left">
 							<Form.Label>Konfirmasi kata Sandi</Form.Label>
-							<Form.Control type="password" size="lg" placeholder="Masukkan konfirmasi kata sandi" value={confirmPass} onChange={setConfirmPass} />
+							<Form.Control type="password" size="lg" placeholder="Masukkan konfirmasi kata sandi" />
 						</Form.Group>
 
 						<div className="d-grid gap-2 mb-4">
-							<Button type="submit" size="md" className="btn-warning btn-login" onClick={handleRegister}>
+							<Button type="submit" size="md" className="btn-warning btn-login">
 								Daftar
 							</Button>
 						</div>
