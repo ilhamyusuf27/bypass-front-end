@@ -12,9 +12,9 @@ const Navibar = () => {
   return (
     <>
       <div className="row">
-        <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+        <Navbar collapseOnSelect expand="lg" bg="white" variant="light">
           <Container>
-            <Navbar.Brand href="#home">
+            <Navbar.Brand href="/">
               <img src={brandLogo} alt="" />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
