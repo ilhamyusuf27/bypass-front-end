@@ -1,20 +1,21 @@
 .App {
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .form-login {
   /* align-items: center; */
+  align-items: flex-start !important;
 }
 
 .background {
+  position: sticky;
   background: url("../../Assets/Images/BgLogin.png");
   background-repeat: no-repeat;
   background-size: cover;
-  height: fit-content;
 }
 
 .opacity {
-
   background-color: #5e50a1;
   opacity: 0.6;
   height: 100vh;
@@ -34,5 +35,5 @@
   left: 3%;
   top: 30%;
   color: white;
-  width: 35%;
+  width: 60%;
 }
