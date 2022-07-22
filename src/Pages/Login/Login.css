@@ -35,3 +35,84 @@
   color: white;
   width: 35%;
 }
+
+.tagline-option-login {
+  position: relative;
+  color: white;
+  width: 80%;
+}
+
+.option-login {
+  position: relative;
+  margin-top: -75vh;
+}
+
+.login-as-employee {
+  font-size: x-large;
+  background-color: #5e50a1;
+  border-color: #5e50a1;
+}
+
+.login-as-employee:hover {
+  background-color: #5e50a1;
+  border-color: #5e50a1;
+}
+
+.login-as-employee:focus {
+  background-color: #5e50a1;
+  border-color: #5e50a1;
+}
+
+.login-as-company {
+  font-size: x-large;
+  color: white;
+  border-color: white;
+}
+
+.login-as-company:hover {
+  background-color: orange;
+  border-color: orange;
+}
+
+.login-as-company:focus {
+  background-color: orange;
+  border-color: orange;
+}
+
+.strike {
+  display: block;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap; 
+}
+
+.strike > span {
+  position: relative;
+  display: inline-block;
+  color: rgb(255, 255, 255);
+  font-size: large;
+}
+
+.strike > span:before,
+.strike > span:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 9999px;
+  height: 1px;
+  background: rgb(255, 255, 255);
+}
+
+.strike > span:before {
+  right: 100%;
+  margin-right: 15px;
+}
+
+.strike > span:after {
+  left: 100%;
+  margin-left: 15px;
+}
+
+.text-none {
+  text-decoration: none !important;
+}

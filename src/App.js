@@ -3,7 +3,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import Login from "./Pages/Login/Login";
+import EmployeLogin from "./Pages/Login/EmployeLogin";
+import CompanyLogin from "./Pages/Login/CompanyLogin";
+import OptionLogin from "./Pages/Login/OptionLogin";
 import Home from "./Pages/Home/Home";
 import ProfileCompany from "./Pages/ProfileCompany/ProfileCompany";
 import EditProfileCompany from "./Pages/EditProfileCompany/EditProfileCompany";
@@ -25,7 +27,9 @@ function App() {
 			<Routes>
 				{/* page with no navbar and footer */}
 				<Route element={<WithoutNavFooter />}>
-					<Route path="login" element={<Login />} />
+					<Route path="employee-login" element={<EmployeLogin />} />
+					<Route path="company-login" element={<CompanyLogin />} />
+					<Route path="option-login" element={<OptionLogin />} />
 					<Route path="register" element={<Register />} />
 					<Route path="*" element={<NotFound />} />
 					<Route path="register-company" element={<CompanyRegister />} />
