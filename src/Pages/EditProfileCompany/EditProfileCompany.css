@@ -2,6 +2,16 @@
   background-color: #E5E5E5;
 }
 
+.bg-shadow {
+  background-color: #54469c;
+  height: 35vh;
+  z-index: -1;
+}
+
+.c-top {
+  margin-top: -180px;
+}
+
 .left {
   text-align: left !important;
 }
@@ -182,10 +192,10 @@
   }
   
   .card.hovercard .avatar img {
-    width: 100px;
-    height: 100px;
-    max-width: 100px;
-    max-height: 100px;
+    width: 150px;
+    height: 150px;
+    max-width: 150px;
+    max-height: 150px;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
