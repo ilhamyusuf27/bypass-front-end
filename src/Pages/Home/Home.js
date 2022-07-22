@@ -9,10 +9,13 @@ import Button from "react-bootstrap/Button";
 import { Container } from "react-bootstrap";
 import EmployeesList from "../../Components/EmployeesList/EmployeesList";
 import LoadingPage from "../../Components/LoadingPage/LoadingPage";
+import PaginationEmployees from "../../Components/PaginationEmployees/PaginationEmployees";
 
 const Home = () => {
   const [employeesList, setEmployeesList] = useState([]);
   const [isLoading, setIsloading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [dataPerPage] = useState(4);
 
   useEffect(() => {
     getDataEmployees();
@@ -26,6 +29,15 @@ const Home = () => {
         setIsloading(false);
       })
       .catch((err) => console.log(err));
+  };
+
+  const indextOfLastData = currentPage * dataPerPage;
+  const indextOfFirstData = indextOfLastData - dataPerPage;
+  const currentData = employeesList.slice(indextOfFirstData, indextOfLastData);
+
+  // change page
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
   };
 
   return (
@@ -63,7 +75,14 @@ const Home = () => {
           {isLoading ? (
             <LoadingPage />
           ) : (
-            <EmployeesList employeesList={employeesList} />
+            <>
+              <EmployeesList employeesList={currentData} />
+              <PaginationEmployees
+                dataPerPage={dataPerPage}
+                totalData={employeesList?.length}
+                paginate={paginate}
+              />
+            </>
           )}
         </Container>
       </div>

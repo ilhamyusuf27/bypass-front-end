@@ -69,3 +69,19 @@
 .hr-home:last-of-type {
   display: none;
 }
+
+/* Pagination Home */
+.pagination-employee {
+  text-decoration: none;
+  color: white;
+}
+
+.page-link {
+  background-color: white !important;
+  color: #503ea4;
+}
+
+.page-link:hover {
+  color: white;
+  background-color: #503ea4 !important;
+}
