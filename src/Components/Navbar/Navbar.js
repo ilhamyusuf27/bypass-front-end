@@ -23,7 +23,7 @@ const Navibar = () => {
               <Nav>
                 {isLogin ? (
                   <>
-                    <Link to="/login">
+                    <Link to="/option-login">
                       <Button
                         variant="outline-flat"
                         style={{ marginRight: "5px" }}
