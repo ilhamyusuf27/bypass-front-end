@@ -1,16 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "./Home.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
-import Badge from "react-bootstrap/Badge";
-import { GoLocation } from "react-icons/go";
-import profileImg from "../../Assets/Images/profile image example.jpeg";
 import { Container } from "react-bootstrap";
+import EmployeesList from "../../Components/EmployeesList/EmployeesList";
+import LoadingPage from "../../Components/LoadingPage/LoadingPage";
 
 const Home = () => {
+  const [employeesList, setEmployeesList] = useState([]);
+  const [isLoading, setIsloading] = useState(true);
+
+  useEffect(() => {
+    getDataEmployees();
+  }, []);
+
+  const getDataEmployees = () => {
+    axios
+      .get(`${process.env.REACT_APP_URL_API}/user`)
+      .then((res) => {
+        setEmployeesList(res?.data?.user);
+        setIsloading(false);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
       <div className="header-home">
@@ -43,133 +60,11 @@ const Home = () => {
             </DropdownButton>
             <Button variant="flat">Search</Button>
           </InputGroup>
-          <div
-            className="card mb-3 pb-2"
-            style={{ maxWidth: "100%", border: "none" }}
-          >
-            <div className="row mx-4">
-              <div className="col-md-5">
-                <div className="row g-0">
-                  <div className="col-md-4">
-                    <div>
-                      <img
-                        src={profileImg}
-                        className="img-fluid rounded-start img-user-home"
-                        alt="..."
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-8 align-self-center">
-                    <div className="card-body body-user-home">
-                      <h5 className="card-title">Louis Tomlinson</h5>
-                      <p className="card-text">Web Developer</p>
-                      <p className="card-text">
-                        <small className="text-muted">
-                          <GoLocation /> lorem ipsum
-                        </small>
-                      </p>
-                      <span className="skills-badge-home">
-                        <Badge bg="warning">PHP</Badge>
-                      </span>
-                      <span className="skills-badge-home">
-                        <Badge bg="warning">JavaScript</Badge>
-                      </span>
-                      <span className="skills-badge-home">
-                        <Badge bg="warning">HTML</Badge>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-7 d-flex justify-content-end align-items-center">
-                <div className="col-md-2 ">
-                  <Button variant="flat">Lihat Profile</Button>
-                </div>
-              </div>
-            </div>
-            <hr />
-            <div className="row mx-4">
-              <div className="col-md-5">
-                <div className="row g-0">
-                  <div className="col-md-4">
-                    <div>
-                      <img
-                        src={profileImg}
-                        className="img-fluid rounded-start img-user-home"
-                        alt="..."
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-8 align-self-center">
-                    <div className="card-body body-user-home">
-                      <h5 className="card-title">Louis Tomlinson</h5>
-                      <p className="card-text">Web Developer</p>
-                      <p className="card-text">
-                        <small className="text-muted">
-                          <GoLocation /> lorem ipsum
-                        </small>
-                      </p>
-                      <span className="skills-badge-home">
-                        <Badge bg="warning">PHP</Badge>
-                      </span>
-                      <span className="skills-badge-home">
-                        <Badge bg="warning">JavaScript</Badge>
-                      </span>
-                      <span className="skills-badge-home">
-                        <Badge bg="warning">HTML</Badge>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-7 d-flex justify-content-end align-items-center">
-                <div className="col-md-2 ">
-                  <Button variant="flat">Lihat Profile</Button>
-                </div>
-              </div>
-            </div>
-            <hr />
-            <div className="row mx-4">
-              <div className="col-md-5">
-                <div className="row g-0">
-                  <div className="col-md-4">
-                    <div>
-                      <img
-                        src={profileImg}
-                        className="img-fluid rounded-start img-user-home"
-                        alt="..."
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-8 align-self-center">
-                    <div className="card-body body-user-home">
-                      <h5 className="card-title">Louis Tomlinson</h5>
-                      <p className="card-text">Web Developer</p>
-                      <p className="card-text">
-                        <small className="text-muted">
-                          <GoLocation /> lorem ipsum
-                        </small>
-                      </p>
-                      <span className="skills-badge-home">
-                        <Badge bg="warning">PHP</Badge>
-                      </span>
-                      <span className="skills-badge-home">
-                        <Badge bg="warning">JavaScript</Badge>
-                      </span>
-                      <span className="skills-badge-home">
-                        <Badge bg="warning">HTML</Badge>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-7 d-flex justify-content-end align-items-center">
-                <div className="col-md-2 ">
-                  <Button variant="flat">Lihat Profile</Button>
-                </div>
-              </div>
-            </div>
-          </div>
+          {isLoading ? (
+            <LoadingPage />
+          ) : (
+            <EmployeesList employeesList={employeesList} />
+          )}
         </Container>
       </div>
     </>

@@ -57,9 +57,15 @@
 
 .img-user-home {
   clip-path: circle();
+  width: 150px;
   margin-left: 25px;
 }
 
 .body-user-home {
   margin-left: 40px;
+  margin-bottom: 20px;
+}
+
+.hr-home:last-of-type {
+  display: none;
 }
