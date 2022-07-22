@@ -209,11 +209,28 @@
     margin-bottom: -50px;
   }
   
+  .card.hovercard .avatar-p-company {
+    position: relative;
+    top: -90px;
+    margin-bottom: -50px;
+  }
+  
   .card.hovercard .avatar img {
     width: 100px;
     height: 100px;
     max-width: 100px;
     max-height: 100px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 5px solid rgba(255,255,255,0.5);
+  }
+  
+  .card.hovercard .avatar-p-company img {
+    width: 180px;
+    height: 180px;
+    max-width: 180px;
+    max-height: 180px;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
