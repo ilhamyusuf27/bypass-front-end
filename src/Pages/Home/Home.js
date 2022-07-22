@@ -44,44 +44,39 @@ const Home = () => {
             <Button variant="flat">Search</Button>
           </InputGroup>
           <div
-            className="card mb-3"
+            className="card mb-3 pb-2"
             style={{ maxWidth: "100%", border: "none" }}
           >
-            <div className="row">
+            <div className="row mx-4">
               <div className="col-md-5">
-                <div
-                  className="card mb-3"
-                  style={{ maxWidth: "540px", border: "none" }}
-                >
-                  <div className="row g-0">
-                    <div className="col-md-4">
-                      <div>
-                        <img
-                          src={profileImg}
-                          className="img-fluid rounded-start img-user-home"
-                          alt="..."
-                        />
-                      </div>
+                <div className="row g-0">
+                  <div className="col-md-4">
+                    <div>
+                      <img
+                        src={profileImg}
+                        className="img-fluid rounded-start img-user-home"
+                        alt="..."
+                      />
                     </div>
-                    <div className="col-md-8 align-self-center">
-                      <div className="card-body body-user-home">
-                        <h5 className="card-title">Louis Tomlinson</h5>
-                        <p className="card-text">Web Developer</p>
-                        <p className="card-text">
-                          <small className="text-muted">
-                            <GoLocation /> lorem ipsum
-                          </small>
-                        </p>
-                        <span className="skills-badge-home">
-                          <Badge bg="warning">PHP</Badge>
-                        </span>
-                        <span className="skills-badge-home">
-                          <Badge bg="warning">JavaScript</Badge>
-                        </span>
-                        <span className="skills-badge-home">
-                          <Badge bg="warning">HTML</Badge>
-                        </span>
-                      </div>
+                  </div>
+                  <div className="col-md-8 align-self-center">
+                    <div className="card-body body-user-home">
+                      <h5 className="card-title">Louis Tomlinson</h5>
+                      <p className="card-text">Web Developer</p>
+                      <p className="card-text">
+                        <small className="text-muted">
+                          <GoLocation /> lorem ipsum
+                        </small>
+                      </p>
+                      <span className="skills-badge-home">
+                        <Badge bg="warning">PHP</Badge>
+                      </span>
+                      <span className="skills-badge-home">
+                        <Badge bg="warning">JavaScript</Badge>
+                      </span>
+                      <span className="skills-badge-home">
+                        <Badge bg="warning">HTML</Badge>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -93,41 +88,36 @@ const Home = () => {
               </div>
             </div>
             <hr />
-            <div className="row">
+            <div className="row mx-4">
               <div className="col-md-5">
-                <div
-                  className="card mb-3"
-                  style={{ maxWidth: "540px", border: "none" }}
-                >
-                  <div className="row g-0">
-                    <div className="col-md-4">
-                      <div>
-                        <img
-                          src={profileImg}
-                          className="img-fluid rounded-start img-user-home"
-                          alt="..."
-                        />
-                      </div>
+                <div className="row g-0">
+                  <div className="col-md-4">
+                    <div>
+                      <img
+                        src={profileImg}
+                        className="img-fluid rounded-start img-user-home"
+                        alt="..."
+                      />
                     </div>
-                    <div className="col-md-8 align-self-center">
-                      <div className="card-body body-user-home">
-                        <h5 className="card-title">Louis Tomlinson</h5>
-                        <p className="card-text">Web Developer</p>
-                        <p className="card-text">
-                          <small className="text-muted">
-                            <GoLocation /> lorem ipsum
-                          </small>
-                        </p>
-                        <span className="skills-badge-home">
-                          <Badge bg="warning">PHP</Badge>
-                        </span>
-                        <span className="skills-badge-home">
-                          <Badge bg="warning">JavaScript</Badge>
-                        </span>
-                        <span className="skills-badge-home">
-                          <Badge bg="warning">HTML</Badge>
-                        </span>
-                      </div>
+                  </div>
+                  <div className="col-md-8 align-self-center">
+                    <div className="card-body body-user-home">
+                      <h5 className="card-title">Louis Tomlinson</h5>
+                      <p className="card-text">Web Developer</p>
+                      <p className="card-text">
+                        <small className="text-muted">
+                          <GoLocation /> lorem ipsum
+                        </small>
+                      </p>
+                      <span className="skills-badge-home">
+                        <Badge bg="warning">PHP</Badge>
+                      </span>
+                      <span className="skills-badge-home">
+                        <Badge bg="warning">JavaScript</Badge>
+                      </span>
+                      <span className="skills-badge-home">
+                        <Badge bg="warning">HTML</Badge>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -139,41 +129,36 @@ const Home = () => {
               </div>
             </div>
             <hr />
-            <div className="row">
+            <div className="row mx-4">
               <div className="col-md-5">
-                <div
-                  className="card mb-3"
-                  style={{ maxWidth: "540px", border: "none" }}
-                >
-                  <div className="row g-0">
-                    <div className="col-md-4">
-                      <div>
-                        <img
-                          src={profileImg}
-                          className="img-fluid rounded-start img-user-home"
-                          alt="..."
-                        />
-                      </div>
+                <div className="row g-0">
+                  <div className="col-md-4">
+                    <div>
+                      <img
+                        src={profileImg}
+                        className="img-fluid rounded-start img-user-home"
+                        alt="..."
+                      />
                     </div>
-                    <div className="col-md-8 align-self-center">
-                      <div className="card-body body-user-home">
-                        <h5 className="card-title">Louis Tomlinson</h5>
-                        <p className="card-text">Web Developer</p>
-                        <p className="card-text">
-                          <small className="text-muted">
-                            <GoLocation /> lorem ipsum
-                          </small>
-                        </p>
-                        <span className="skills-badge-home">
-                          <Badge bg="warning">PHP</Badge>
-                        </span>
-                        <span className="skills-badge-home">
-                          <Badge bg="warning">JavaScript</Badge>
-                        </span>
-                        <span className="skills-badge-home">
-                          <Badge bg="warning">HTML</Badge>
-                        </span>
-                      </div>
+                  </div>
+                  <div className="col-md-8 align-self-center">
+                    <div className="card-body body-user-home">
+                      <h5 className="card-title">Louis Tomlinson</h5>
+                      <p className="card-text">Web Developer</p>
+                      <p className="card-text">
+                        <small className="text-muted">
+                          <GoLocation /> lorem ipsum
+                        </small>
+                      </p>
+                      <span className="skills-badge-home">
+                        <Badge bg="warning">PHP</Badge>
+                      </span>
+                      <span className="skills-badge-home">
+                        <Badge bg="warning">JavaScript</Badge>
+                      </span>
+                      <span className="skills-badge-home">
+                        <Badge bg="warning">HTML</Badge>
+                      </span>
                     </div>
                   </div>
                 </div>
