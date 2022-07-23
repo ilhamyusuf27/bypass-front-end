@@ -2,6 +2,8 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./store";
 
 import Login from "./Pages/Login/Login";
 import Home from "./Pages/Home/Home";
@@ -21,31 +23,33 @@ import Hire from "./Pages/Hire/Hire";
 
 function App() {
 	return (
-		<BrowserRouter>
-			<Routes>
-				{/* page with no navbar and footer */}
-				<Route element={<WithoutNavFooter />}>
-					<Route path="login" element={<Login />} />
-					<Route path="register" element={<Register />} />
-					<Route path="*" element={<NotFound />} />
-					<Route path="register-company" element={<CompanyRegister />} />
-				</Route>
+		<Provider store={store}>
+			<BrowserRouter>
+				<Routes>
+					{/* page with no navbar and footer */}
+					<Route element={<WithoutNavFooter />}>
+						<Route path="login" element={<Login />} />
+						<Route path="register" element={<Register />} />
+						<Route path="*" element={<NotFound />} />
+						<Route path="register-company" element={<CompanyRegister />} />
+					</Route>
 
-				{/* page with navbar and footer */}
-				<Route element={<WithNavFooter />}>
-					<Route path="/" element={<LandingPage />} />
-					<Route path="/profile-company" element={<ProfileCompany />} />
-					<Route path="/edit-profile-company" element={<EditProfileCompany />} />
-					<Route path="/home" element={<Home />} />
-					<Route path="/profile-employee" element={<ProfileEmployee />} />
-					<Route path="/" element={<LandingPage />} />
-					<Route path="/edit-profile-employee" element={<EditProfileEmployee />} />
-					<Route path="/chat" element={<Chat />} />
-					<Route path="/chat-isi" element={<ChatIsi />} />
-					<Route path="hire" element={<Hire />} />
-				</Route>
-			</Routes>
-		</BrowserRouter>
+					{/* page with navbar and footer */}
+					<Route element={<WithNavFooter />}>
+						<Route path="/" element={<LandingPage />} />
+						<Route path="/profile-company" element={<ProfileCompany />} />
+						<Route path="/edit-profile-company" element={<EditProfileCompany />} />
+						<Route path="/home" element={<Home />} />
+						<Route path="/profile-employee" element={<ProfileEmployee />} />
+						<Route path="/" element={<LandingPage />} />
+						<Route path="/edit-profile-employee" element={<EditProfileEmployee />} />
+						<Route path="/chat" element={<Chat />} />
+						<Route path="/chat-isi" element={<ChatIsi />} />
+						<Route path="hire" element={<Hire />} />
+					</Route>
+				</Routes>
+			</BrowserRouter>
+		</Provider>
 	);
 }
 

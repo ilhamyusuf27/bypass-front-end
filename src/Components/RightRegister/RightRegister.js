@@ -6,9 +6,12 @@ import "./RightRegister.css";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
+import { connect } from "react-redux";
+
 import axios from "axios";
 
-function RightLogin() {
+function RightRegister(props) {
+	console.log("props", props);
 	const navigate = useNavigate();
 	const [nama, setNama] = React.useState("");
 	const [email, setEmail] = React.useState("");
@@ -98,4 +101,10 @@ function RightLogin() {
 	);
 }
 
-export default RightLogin;
+const mapStateToProps = (state) => ({
+	registerData: state?.register,
+});
+
+const mapDispatchToProp = (dispatch) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProp)(RightRegister);
