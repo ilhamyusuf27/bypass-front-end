@@ -23,7 +23,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* page without navbar and footer */}
+        {/* page with no navbar and footer */}
         <Route element={<WithoutNavFooter />}>
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
