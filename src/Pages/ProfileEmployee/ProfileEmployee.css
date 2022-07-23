@@ -20,6 +20,7 @@
   overflow: hidden;
   border-radius: 15px !important;
   transition: transform 0.2s;
+  cursor: pointer;
 }
 
 .card-employee:after {
