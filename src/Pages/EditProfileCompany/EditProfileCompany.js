@@ -14,7 +14,8 @@ import "./EditProfileCompany.css";
 const EditProfileCompany = () => {
   return (
     <>
-      <Container className="mb-5">
+    <Container fluid className="bg-shadow" />
+      <Container className="mb-5 c-top">
         <Row>
           <div className="col-lg-4 col-md-4 col-sm-12">
             <Card className="card hovercard mt-5">

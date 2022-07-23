@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Badge, Tab, Tabs, Container } from "react-bootstrap";
 import { GoLocation } from "react-icons/go";
 import { AiOutlineMail } from "react-icons/ai";
@@ -6,13 +6,62 @@ import { FiInstagram } from "react-icons/fi";
 import { AiFillGithub } from "react-icons/ai";
 import { FiGitlab } from "react-icons/fi";
 import "./ProfileEmployee.css";
-import employeeImg from "../../Assets/Images/profile image example.jpeg";
 import logoCompany from "../../Assets/Images/logo-company.png";
-import portoExample1 from "../../Assets/Images/portofolio-example-1.png";
-import portoExample2 from "../../Assets/Images/portofolio-example-2.png";
-import portoExample3 from "../../Assets/Images/portofolio-example.png";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import PortofolioEmployee from "../../Components/PortofolioEmployee/PortofolioEmployee";
 
 const ProfileEmployee = () => {
+  const [dataEmployee, setDataEmployee] = useState([]);
+  const [detailEmployee, setDetailEmployee] = useState([]);
+  const [portofolioEmployee, setPortofolioEmployee] = useState([]);
+
+  const idEmployee = useParams();
+
+  useEffect(() => {
+    getUserEmployee();
+    getDetailEmployee();
+    getPortofolioEmployee();
+  }, []);
+
+  const getUserEmployee = () => {
+    axios
+      .get(`${process.env.REACT_APP_URL_API}/user/findByID?id=${idEmployee.id}`)
+      .then((res) => {
+        setDataEmployee(res?.data?.user[0]);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const getDetailEmployee = () => {
+    axios
+      .get(
+        `${process.env.REACT_APP_URL_API}/getAllData/findByID?id=${idEmployee.id}`
+      )
+      .then((res) => {
+        setDetailEmployee(res?.data?.allData[0]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const getPortofolioEmployee = () => {
+    axios
+      .get(
+        `${process.env.REACT_APP_URL_API}/portofolio/findByIdUser?id_user=${idEmployee.id}`
+      )
+      .then((res) => {
+        setPortofolioEmployee(res?.data?.user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  // console.log("detailEmployee", detailEmployee);
+  // console.log(portofolioEmployee);
+
   return (
     <>
       <div className="profile-employee-bg">
@@ -22,37 +71,48 @@ const ProfileEmployee = () => {
               <div className="row mt-5">
                 <div className="col-4">
                   <div className="card">
-                    <div className="text-center">
+                    <div className="text-center pt-4">
                       <img
-                        src={employeeImg}
+                        src={dataEmployee?.user_photo}
                         className="card-img-top profile-employee-img"
                         alt="..."
                       />
                     </div>
                     <div className="card-body mb-3">
-                      <h5 className="card-title">Louis Tomlinson</h5>
-                      <p>Web Developer</p>
+                      <h5 className="card-title">{dataEmployee?.name}</h5>
+                      <p>{dataEmployee?.job_title}</p>
                       <p className="card-text">
                         <small className="text-muted">
-                          <GoLocation /> Purwokerto, Jawa Tengah
+                          <GoLocation /> {detailEmployee?.address}
                         </small>
                       </p>
-                      <small className="text-muted">Freelancer</small>
+                      <small className="text-muted">
+                        {dataEmployee?.job_type}
+                      </small>
                       <p className="card-text">
                         <small className="text-muted">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Vestibulum erat orci, mollis nec gravida sed,
-                          ornare quis urna. Curabitur eu lacus fringilla,
-                          vestibulum risus at.
+                          {detailEmployee?.description}
                         </small>
                       </p>
-                      <Button
-                        variant="flat"
-                        style={{ width: "100%" }}
-                        size="lg"
-                      >
-                        Hire
-                      </Button>
+                      {dataEmployee?.is_hired ? (
+                        <Button
+                          variant="flat"
+                          style={{ width: "100%" }}
+                          size="lg"
+                          disabled
+                        >
+                          Already Hired
+                        </Button>
+                      ) : (
+                        <Button
+                          variant="flat"
+                          style={{ width: "100%" }}
+                          size="lg"
+                        >
+                          Hire
+                        </Button>
+                      )}
+
                       <div className="skills-badge-employee mt-4">
                         <h5>Skills</h5>
                         <span className="skills-badge-home">
@@ -68,7 +128,7 @@ const ProfileEmployee = () => {
                       <div className="media-socials-employee mt-4">
                         <div className="row">
                           <small className="text-muted mt-2">
-                            <AiOutlineMail /> test@gmail.com
+                            <AiOutlineMail /> {dataEmployee?.email}
                           </small>
                         </div>
                         <div className="row">
@@ -99,86 +159,7 @@ const ProfileEmployee = () => {
                         className="mb-3"
                       >
                         <Tab eventKey="portofolio" title="Portofolio">
-                          <div className="row">
-                            <div className="col-4">
-                              <div className="card card-employee mb-4">
-                                <img
-                                  crossOrigin="anonymous"
-                                  src={portoExample1}
-                                  className="card-img-top image-portofolio"
-                                  alt="..."
-                                />
-                                <h5 className="card-title name-portofolio">
-                                  Smartcity
-                                </h5>
-                              </div>
-                            </div>
-                            <div className="col-4">
-                              <div className="card card-employee mb-4">
-                                <img
-                                  crossOrigin="anonymous"
-                                  src={portoExample2}
-                                  className="card-img-top image-portofolio"
-                                  alt="..."
-                                />
-                                <h5 className="card-title name-portofolio">
-                                  Smartcity
-                                </h5>
-                              </div>
-                            </div>
-                            <div className="col-4">
-                              <div className="card card-employee mb-4">
-                                <img
-                                  crossOrigin="anonymous"
-                                  src={portoExample3}
-                                  className="card-img-top image-portofolio"
-                                  alt="..."
-                                />
-                                <h5 className="card-title name-portofolio">
-                                  Smartcity
-                                </h5>
-                              </div>
-                            </div>
-                            <div className="col-4">
-                              <div className="card card-employee mb-4">
-                                <img
-                                  crossOrigin="anonymous"
-                                  src={portoExample2}
-                                  className="card-img-top image-portofolio"
-                                  alt="..."
-                                />
-                                <h5 className="card-title name-portofolio">
-                                  Smartcity
-                                </h5>
-                              </div>
-                            </div>
-                            <div className="col-4">
-                              <div className="card card-employee mb-4">
-                                <img
-                                  crossOrigin="anonymous"
-                                  src={portoExample1}
-                                  className="card-img-top image-portofolio"
-                                  alt="..."
-                                />
-                                <h5 className="card-title name-portofolio">
-                                  Smartcity
-                                </h5>
-                              </div>
-                            </div>
-                            <div className="col-4">
-                              <div className="card card-employee mb-4">
-                                <img
-                                  crossOrigin="anonymous"
-                                  src={portoExample1}
-                                  className="card-img-top image-portofolio"
-                                  alt="..."
-                                />
-                                <h5 className="card-title name-portofolio">
-                                  Smartcity
-                                </h5>
-                              </div>
-                            </div>
-                          </div>
+                          <PortofolioEmployee data={portofolioEmployee} />
                         </Tab>
                         <Tab
                           eventKey="pengalaman-kerja"

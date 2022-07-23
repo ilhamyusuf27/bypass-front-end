@@ -57,9 +57,31 @@
 
 .img-user-home {
   clip-path: circle();
+  width: 150px;
   margin-left: 25px;
 }
 
 .body-user-home {
   margin-left: 40px;
+  margin-bottom: 20px;
+}
+
+.hr-home:last-of-type {
+  display: none;
+}
+
+/* Pagination Home */
+.pagination-employee {
+  text-decoration: none;
+  color: white;
+}
+
+.page-link {
+  background-color: white !important;
+  color: #503ea4;
+}
+
+.page-link:hover {
+  color: white;
+  background-color: #503ea4 !important;
 }

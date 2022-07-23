@@ -1,0 +1,37 @@
+.testimoni {
+    align-items: center !important;
+}
+
+.text-testimoni {
+    font-size: medium;
+}
+
+.slick-slide {
+    padding-right: 25px;
+    padding-left: 25px;
+}
+
+.card-subscribe {
+    border-radius: 35px 10px 35px 10px;
+    background-color: #5e50a1;
+    margin-top: 50px;
+}
+
+.v-center {
+    align-items: center;
+}
+
+.start-from-now {
+    font-weight: bold;
+    padding: 20px;
+    color: #5e50a1;
+    background-color: white;
+    border-color: #5e50a1;
+}
+
+.start-from-now:hover {
+    font-weight: bold;
+    color: white;
+    background-color: rgb(251 176 23);
+    border-color: #5e50a1;
+}

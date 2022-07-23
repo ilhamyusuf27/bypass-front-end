@@ -4,7 +4,7 @@ import "./Login.css";
 import LeftLogin from "../../Components/LeftLogin/LeftLogin";
 import RightLogin from "../../Components/RightLogin/RightLogin";
 
-const Login = () => {
+const CompanyLogin = () => {
   return (
     <>
       <Container fluid className="App">
@@ -17,4 +17,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default CompanyLogin;
