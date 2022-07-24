@@ -1,4 +1,4 @@
-import { useEffect, useState, React } from "react";
+import React from "react";
 import {
   Container,
   Row,
@@ -20,42 +20,35 @@ const EditProfileCompany = () => {
   const data = JSON.parse(localStorage.getItem("data"));
   const rec_id = data.recruiter_id;
 
-  const [isLoadPage, setIsloadPage] = useState(true);
-  const [dataCompany, setDataCompany] = useState([]);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    getCompany();
-  }, []);
-
-  const getCompany = () => {
+  const getUpdateCompany = () => {
     axios
       .get(
         `${process.env.REACT_APP_URL_API}/company/find/id?recruiter_id=${rec_id}`
       )
       .then((res) => {
-        console.log(res?.data?.company[0])
-        setDataCompany(res?.data?.company[0]);
-        setIsloadPage(false);
+        localStorage.setItem("data", JSON.stringify(res?.data?.company[0]));
       })
       .catch((err) => console.log(err));
   };
 
-  const [email, setEmail] = useState(dataCompany?.recruiter_email);
-  const [rec_photo, setRec_photo] = useState(dataCompany?.recruiter_photo);
-  const [name, setName] = useState(dataCompany?.company_name);
-  const [business_fields, setBusinessField] = useState(dataCompany?.business_fields);
-  const [city, setCity] = useState(dataCompany?.company_city);
-  const [description, setDescription] = useState(dataCompany?.company_description);
-  const [instagram, setInstagram] = useState(dataCompany?.company_instagram);
-  const [phone, setPhone] = useState(dataCompany?.recruiter_phone);
-  const [linkedin, setLinkedin] = useState(dataCompany?.company_linkedin);
+  const [email, setEmail] = React.useState(data.recruiter_email);
+  const [rec_photo, setRec_photo] = React.useState(data.recruiter_photo);
+  const [name, setName] = React.useState(data.company_name);
+  const [business_fields, setBusinessField] = React.useState(data.business_fields);
+  const [city, setCity] = React.useState(data.company_city);
+  const [description, setDescription] = React.useState(data.company_description);
+  const [instagram, setInstagram] = React.useState(data.company_instagram);
+  const [phone, setPhone] = React.useState(data.recruiter_phone);
+  const [linkedin, setLinkedin] = React.useState(data.company_linkedin);
   
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [isError, setIsError] = React.useState(false);
 
   const handleSimpan = () => {
+    const token = localStorage.getItem("token_almnk");
+        
     setIsLoading(true);
+
     axios
       .patch("https://bypass-pijar.herokuapp.com/company/edit", {
         recruiter_id: rec_id,
@@ -67,13 +60,16 @@ const EditProfileCompany = () => {
         company_instagram: instagram,
         recruiter_phone: phone,
         company_linkedin: linkedin,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       })
       .then((res) => {
         Swal.fire({
           icon: "success",
           title: "Succseed",
           text: "Berhasil Diubah",
-        }).then((result) => (result.isConfirmed ? navigate("/profile-company/") : null));
+        }).then((result) => (result.isConfirmed ? navigate("/profile-company/") : null)).then(getUpdateCompany());
       })
       .catch((err) => {
         setIsLoading(false);
