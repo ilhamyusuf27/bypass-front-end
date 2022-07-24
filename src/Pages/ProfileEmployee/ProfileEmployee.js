@@ -132,7 +132,7 @@ const ProfileEmployee = () => {
                       </div>
                       <div className="card-body mb-3">
                         <h5 className="card-title">{dataEmployee?.name}</h5>
-                        <p>{detailEmployee.job_title}</p>
+                        <p>{detailEmployee?.job_title}</p>
                         <p className="card-text">
                           <small className="text-muted">
                             <GoLocation /> {detailEmployee?.address}

@@ -20,7 +20,7 @@ const ExperienceEmployee = (props) => {
             </div>
             <div className="col-9">
               <h2>{item.job_title}</h2>
-              <h4 className="text-muted">{item.company_name}</h4>
+              <h5 className="text-muted">{item.company_name}</h5>
               <p className="text-muted">
                 {moment(item.start_date).format("MMM YYYY")} -{" "}
                 {moment(item.end_date).format("MMM YYYY")}
