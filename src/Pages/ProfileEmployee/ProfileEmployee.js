@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Button, Badge, Tab, Tabs, Container } from "react-bootstrap";
+import { Button, Tab, Tabs, Container } from "react-bootstrap";
 import { GoLocation } from "react-icons/go";
-import { AiOutlineMail } from "react-icons/ai";
-import { FiInstagram } from "react-icons/fi";
-import { AiFillGithub } from "react-icons/ai";
-import { FiGitlab } from "react-icons/fi";
 import "./ProfileEmployee.css";
 import logoCompany from "../../Assets/Images/logo-company.png";
 import axios from "axios";
@@ -12,12 +8,19 @@ import { useParams } from "react-router-dom";
 import PortofolioEmployee from "../../Components/PortofolioEmployee/PortofolioEmployee";
 import LoadingPage from "../../Components/LoadingPage/LoadingPage";
 import NoDataComp from "../../Components/NoDataComp/NoDataComp";
+import SocialMediaEmployee from "../../Components/SocialMediaEmployee/SocialMediaEmployee";
+import { AiOutlineMail } from "react-icons/ai";
+import SkillsUserEmployee from "../../Components/SkillsUserEmployee/SkillsUserEmployee";
+import ExperienceEmployee from "../../Components/ExperienceEmployee/ExperienceEmployee";
 
 const ProfileEmployee = () => {
+	const [isLoading, setIsloading] = useState(true);
 	const [dataEmployee, setDataEmployee] = useState([]);
 	const [detailEmployee, setDetailEmployee] = useState([]);
 	const [portofolioEmployee, setPortofolioEmployee] = useState([]);
-	const [isLoading, setIsloading] = useState(true);
+	const [skills, setSkills] = useState([]);
+	const [socials, setSocials] = useState([]);
+	const [experience, setExperience] = useState([]);
 
 	const idEmployee = useParams();
 
@@ -26,6 +29,9 @@ const ProfileEmployee = () => {
 		getUserEmployee();
 		getDetailEmployee();
 		getPortofolioEmployee();
+		getSkillsEmployee();
+		getSosmedEmployee();
+		getExperienceEmployee();
 	}, []);
 
 	const getUserEmployee = () => {
@@ -46,7 +52,7 @@ const ProfileEmployee = () => {
 				setIsloading(false);
 			})
 			.catch((err) => {
-				console.log(err);
+				// console.log(err);
 			});
 	};
 
@@ -56,6 +62,39 @@ const ProfileEmployee = () => {
 			.then((res) => {
 				setPortofolioEmployee(res?.data?.user);
 				setIsloading(false);
+			})
+			.catch((err) => {
+				// console.log(err);
+			});
+	};
+
+	const getSkillsEmployee = () => {
+		axios
+			.get(`${process.env.REACT_APP_URL_API}/skill/findByIdUser?id_user=${idEmployee.id}`)
+			.then((res) => {
+				setSkills(res?.data?.user);
+			})
+			.catch((err) => {
+				// console.log(err);
+			});
+	};
+
+	const getSosmedEmployee = () => {
+		axios
+			.get(`${process.env.REACT_APP_URL_API}/sosmed/findByIdUser?id_user=${idEmployee.id}`)
+			.then((res) => {
+				setSocials(res?.data?.user[0]);
+			})
+			.catch((err) => {
+				// console.log(err);
+			});
+	};
+
+	const getExperienceEmployee = () => {
+		axios
+			.get(`${process.env.REACT_APP_URL_API}/jobExperience/findByIdUser?id_user=${idEmployee.id}`)
+			.then((res) => {
+				setExperience(res?.data?.user);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -79,7 +118,7 @@ const ProfileEmployee = () => {
 											</div>
 											<div className="card-body mb-3">
 												<h5 className="card-title">{dataEmployee?.name}</h5>
-												<p>{dataEmployee?.job_title}</p>
+												<p>{detailEmployee.job_title}</p>
 												<p className="card-text">
 													<small className="text-muted">
 														<GoLocation /> {detailEmployee?.address}
@@ -100,16 +139,12 @@ const ProfileEmployee = () => {
 												)}
 
 												<div className="skills-badge-employee mt-4">
-													<h5>Skills</h5>
-													<span className="skills-badge-home">
-														<Badge bg="warning">PHP</Badge>
-													</span>
-													<span className="skills-badge-home">
-														<Badge bg="warning">JavaScript</Badge>
-													</span>
-													<span className="skills-badge-home">
-														<Badge bg="warning">HTML</Badge>
-													</span>
+													{skills?.length > 0 ? (
+														<>
+															<h5>Skills</h5>
+															<SkillsUserEmployee dataSkills={skills} />
+														</>
+													) : null}
 												</div>
 												<div className="media-socials-employee mt-4">
 													<div className="row">
@@ -117,21 +152,7 @@ const ProfileEmployee = () => {
 															<AiOutlineMail /> {dataEmployee?.email}
 														</small>
 													</div>
-													<div className="row">
-														<small className="text-muted mt-2">
-															<FiInstagram /> @testIG
-														</small>
-													</div>
-													<div className="row">
-														<small className="text-muted mt-2">
-															<AiFillGithub /> @testgit
-														</small>
-													</div>
-													<div className="row">
-														<small className="text-muted mt-2">
-															<FiGitlab /> @testlab
-														</small>
-													</div>
+													<SocialMediaEmployee data={socials} />
 												</div>
 											</div>
 										</div>
@@ -144,35 +165,7 @@ const ProfileEmployee = () => {
 														{portofolioEmployee?.length > 0 ? <PortofolioEmployee data={portofolioEmployee} /> : <NoDataComp title="Belum ada Portofolio" />}
 													</Tab>
 													<Tab eventKey="pengalaman-kerja" title="Pengalaman Kerja">
-														<div className="row">
-															<div className="col-2">
-																<img src={logoCompany} alt="" className="img-experience-portofolio" />
-															</div>
-															<div className="col-9">
-																<h2>Engineer</h2>
-																<h4 className="text-muted">Tokopedia</h4>
-																<p className="text-muted">July 2019 - January 2020 6 Monts</p>
-																<p>
-																	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum erat orci, mollis nec gravida sed, ornare quis urna. Curabitur eu lacus fringilla, vestibulum
-																	risus at.
-																</p>
-																<hr />
-															</div>
-														</div>
-														<div className="row">
-															<div className="col-2">
-																<img src={logoCompany} alt="" className="img-experience-portofolio" />
-															</div>
-															<div className="col-9">
-																<h2>Engineer</h2>
-																<h4 className="text-muted">Tokopedia</h4>
-																<p className="text-muted">July 2019 - January 2020 6 Monts</p>
-																<p>
-																	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum erat orci, mollis nec gravida sed, ornare quis urna. Curabitur eu lacus fringilla, vestibulum
-																	risus at.
-																</p>
-															</div>
-														</div>
+														{experience?.length > 0 ? <ExperienceEmployee data={experience} /> : <NoDataComp title="Belum ada Experience" />}
 													</Tab>
 												</Tabs>
 											</div>

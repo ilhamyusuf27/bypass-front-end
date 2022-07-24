@@ -24,17 +24,12 @@ function RightLogin() {
       })
       .then((res) => {
         localStorage.setItem("token", res?.data?.token);
-        localStorage.setItem("id", res?.data?.user?.id);
-        localStorage.setItem("email", res?.data?.user?.email);
-        localStorage.setItem("name", res?.data?.user?.name);
-        localStorage.setItem("phone", res?.data?.user?.phone_number);
-        localStorage.setItem("role", res?.data?.user?.role);
-        localStorage.setItem("photo", res?.data?.user?.user_photo);
+        localStorage.setItem("data", JSON.stringify(res?.data?.user));
         Swal.fire({
           icon: "success",
           title: "Succseed",
           text: "Berhasil Login",
-        }).then((result) => (result.isConfirmed ? navigate("/") : null));
+        }).then((result) => (result.isConfirmed ? navigate("/profile-employee/" + res?.data?.user?.id) : null));
       })
       .catch((err) => {
         setIsLoading(false);
@@ -90,7 +85,7 @@ function RightLogin() {
                 onClick={handleLogin}
                 disabled={isLoading}
               >
-                Masuk
+                {isLoading ? "Loading..." : "Masuk"}
               </Button>
             </div>
 

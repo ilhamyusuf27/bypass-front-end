@@ -89,7 +89,7 @@ function RightRegister() {
 
 						<p>
 							Anda sudah punya akun?
-							<Link exact to="/register" className="link-register">
+							<Link exact to="/employee-login" className="link-register">
 								Masuk disini
 							</Link>
 						</p>
