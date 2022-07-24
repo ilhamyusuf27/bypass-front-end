@@ -21,6 +21,7 @@ function RightLoginCompany() {
 				recruiter_password: password,
 			})
 			.then((res) => {
+				console.log(res);
 				localStorage.setItem("token", res.data.token);
 				localStorage.setItem("data", JSON.stringify(res.data.data));
 				navigate("/home");
@@ -64,7 +65,7 @@ function RightLoginCompany() {
 
 						<p>
 							Anda belum punya akun?
-							<Link exact to="/register" className="link-register">
+							<Link exact to="/register-company" className="link-register">
 								Daftar disini
 							</Link>
 						</p>
