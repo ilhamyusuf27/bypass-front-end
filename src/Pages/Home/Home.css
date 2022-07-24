@@ -4,6 +4,14 @@
   /* background-color: white; */
 }
 
+.skills-badge-home {
+  margin-right: 8px;
+}
+
+.badge-skills {
+  margin-bottom: 4px;
+}
+
 .header-home {
   color: white;
   background-color: #5e4fa1;

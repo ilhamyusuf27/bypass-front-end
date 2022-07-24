@@ -1,17 +1,13 @@
 import React from "react";
-import { Button, Badge, Tab, Tabs, Container } from "react-bootstrap";
+import { Button, Badge } from "react-bootstrap";
 import { GoLocation } from "react-icons/go";
 import { AiOutlineMail } from "react-icons/ai";
 import { FiInstagram } from "react-icons/fi";
 import { AiFillGithub } from "react-icons/ai";
 import { FiGitlab } from "react-icons/fi";
-import { useParams } from "react-router-dom";
 
 const DetailUserEmployee = (props) => {
   const { dataEmployee } = props;
-
-  const idEmployee = useParams();
-
   return (
     <>
       <div className="col-4">

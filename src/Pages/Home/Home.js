@@ -23,9 +23,9 @@ const Home = () => {
 
   const getDataEmployees = () => {
     axios
-      .get(`${process.env.REACT_APP_URL_API}/user`)
+      .get(`${process.env.REACT_APP_URL_API}/getAllProfile`)
       .then((res) => {
-        setEmployeesList(res?.data?.user);
+        setEmployeesList(res?.data?.profile);
         setIsloading(false);
       })
       .catch((err) => console.log(err));
