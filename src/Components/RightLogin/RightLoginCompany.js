@@ -64,7 +64,7 @@ function RightLoginCompany() {
 
 						<p>
 							Anda belum punya akun?
-							<Link exact to="/register" className="link-register">
+							<Link exact to="/register-company" className="link-register">
 								Daftar disini
 							</Link>
 						</p>
