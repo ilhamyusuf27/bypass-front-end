@@ -8,7 +8,6 @@ import { connect } from "react-redux";
 import { loginCompanyRequest } from "../../redux/reducers/loginCompanyReducer";
 
 function RightLoginCompany(props) {
-	console.log(props);
 	const navigate = useNavigate();
 	const [email, setEmail] = React.useState("");
 	const [password, setPassword] = React.useState("");
