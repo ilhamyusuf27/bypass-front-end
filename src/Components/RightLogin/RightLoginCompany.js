@@ -3,36 +3,25 @@ import { Form, Button } from "react-bootstrap";
 import FormTitle from "./FormTitile";
 import { Link, useNavigate } from "react-router-dom";
 import "./RightLogin.css";
-import axios from "../../Axios/Axios";
-import Swal from "sweetalert2";
 
-function RightLoginCompany() {
+import { connect } from "react-redux";
+import { loginCompanyRequest } from "../../redux/reducers/loginCompanyReducer";
+
+function RightLoginCompany(props) {
+	console.log(props);
 	const navigate = useNavigate();
 	const [email, setEmail] = React.useState("");
 	const [password, setPassword] = React.useState("");
-	const [isLoading, setIsloading] = React.useState(false);
+
+	React.useEffect(() => {
+		if (props?.dataCompany?.token) {
+			navigate("/home");
+		}
+	}, [props.dataCompany]);
 
 	const handleLoginCompany = (e) => {
 		e.preventDefault();
-		setIsloading(true);
-		axios
-			.post("/company/login", {
-				recruiter_email: email,
-				recruiter_password: password,
-			})
-			.then((res) => {
-				localStorage.setItem("token", res.data.token);
-				localStorage.setItem("data", JSON.stringify(res.data.data));
-				navigate("/home");
-			})
-			.catch((err) => {
-				setIsloading(false);
-				Swal.fire({
-					icon: "error",
-					title: "Login Failed",
-					text: err?.response?.data,
-				});
-			});
+		props.authRequestLoginCompany({ email, password });
 	};
 
 	return (
@@ -57,14 +46,14 @@ function RightLoginCompany() {
 						</Link>
 
 						<div className="d-grid gap-2 mb-4">
-							<Button type="submit" size="md" className="btn-warning btn-login" onClick={handleLoginCompany} disabled={isLoading}>
-								{isLoading ? "Loading..." : "Masuk"}
+							<Button type="submit" size="md" className="btn-warning btn-login" onClick={handleLoginCompany} disabled={props.dataCompany.isLoading}>
+								{props.dataCompany.isLoading ? "Loading..." : "Masuk"}
 							</Button>
 						</div>
 
 						<p>
 							Anda belum punya akun?
-							<Link exact to="/register" className="link-register">
+							<Link exact to="/register-company" className="link-register">
 								Daftar disini
 							</Link>
 						</p>
@@ -75,4 +64,12 @@ function RightLoginCompany() {
 	);
 }
 
-export default RightLoginCompany;
+const mapStateToProps = (state) => ({
+	dataCompany: state?.loginCompany,
+});
+
+const mapDispatchToProp = (dispatch) => ({
+	authRequestLoginCompany: (data) => dispatch(loginCompanyRequest(data)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProp)(RightLoginCompany);
