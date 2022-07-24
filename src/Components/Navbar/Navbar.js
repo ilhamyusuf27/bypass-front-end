@@ -23,7 +23,7 @@ const Navibar = () => {
       setIslogin(false);
     }
   })
-  
+
   React.useEffect(() => {
     if(localStorage.getItem("token")) {
       setIslogin(false);
@@ -79,7 +79,8 @@ const Navibar = () => {
                     <Nav.Link href="#deets">
                       <img src={bellIcon} alt="" />
                     </Nav.Link>
-                    <Nav.Link href="#deets">
+                    
+                    <Nav.Link>
                       <img src={userNavIcon} alt="" />
                     </Nav.Link>
                   </>
