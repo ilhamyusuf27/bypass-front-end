@@ -23,21 +23,21 @@ const EmployeesList = (props) => {
                 <div className="col-md-8">
                   <div className="card-body body-user-home">
                     <h5 className="card-title">{item.name}</h5>
-                    <p className="card-text">Web Developer</p>
+                    <p className="card-text">{item.job_title}</p>
                     <p className="card-text">
                       <small className="text-muted">
-                        <GoLocation /> lorem ipsum
+                        <GoLocation /> {item.address}
                       </small>
                     </p>
-                    <span className="skills-badge-home">
-                      <Badge bg="warning">PHP</Badge>
-                    </span>
-                    <span className="skills-badge-home">
-                      <Badge bg="warning">JavaScript</Badge>
-                    </span>
-                    <span className="skills-badge-home">
-                      <Badge bg="warning">HTML</Badge>
-                    </span>
+                    {item?.skill?.map((val) => {
+                      return (
+                        <span className="skills-badge-home">
+                          <Badge className="badge-skills" bg="warning">
+                            {val.skill}
+                          </Badge>
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
@@ -60,7 +60,7 @@ const EmployeesList = (props) => {
   return (
     <>
       <div
-        className="card mb-3 pb-2"
+        className="card mb-3 py-3"
         style={{ maxWidth: "100%", border: "none" }}
       >
         {renderEmployeesList()}
