@@ -3,41 +3,25 @@ import { Form, Button } from "react-bootstrap";
 import FormTitle from "./FormTitile";
 import { Link, useNavigate } from "react-router-dom";
 import "./RightLogin.css";
-import axios from "../../Axios/Axios";
-import Swal from "sweetalert2";
+
 import { connect } from "react-redux";
+import { loginCompanyRequest } from "../../redux/reducers/loginCompanyReducer";
 
 function RightLoginCompany(props) {
 	console.log(props);
 	const navigate = useNavigate();
 	const [email, setEmail] = React.useState("");
 	const [password, setPassword] = React.useState("");
-	const [isLoading, setIsloading] = React.useState(false);
+
+	React.useEffect(() => {
+		if (props?.dataCompany?.token) {
+			navigate("/home");
+		}
+	}, [props.dataCompany]);
 
 	const handleLoginCompany = (e) => {
 		e.preventDefault();
-		setIsloading(true);
-		axios
-			.post("/company/login", {
-				recruiter_email: email,
-				recruiter_password: password,
-			})
-			.then((res) => {
-				// localStorage.setItem("token", res.data.token);
-				// localStorage.setItem("data", JSON.stringify(res.data.data));
-				props.setToken(res?.data?.token);
-				props.setProfile(res?.data?.data);
-				console.log(props);
-				// navigate("/home");
-			})
-			.catch((err) => {
-				setIsloading(false);
-				Swal.fire({
-					icon: "error",
-					title: "Login Failed",
-					text: err?.response?.data,
-				});
-			});
+		props.authRequestLoginCompany({ email, password });
 	};
 
 	return (
@@ -62,8 +46,8 @@ function RightLoginCompany(props) {
 						</Link>
 
 						<div className="d-grid gap-2 mb-4">
-							<Button type="submit" size="md" className="btn-warning btn-login" onClick={handleLoginCompany} disabled={isLoading}>
-								{isLoading ? "Loading..." : "Masuk"}
+							<Button type="submit" size="md" className="btn-warning btn-login" onClick={handleLoginCompany} disabled={props.dataCompany.isLoading}>
+								{props.dataCompany.isLoading ? "Loading..." : "Masuk"}
 							</Button>
 						</div>
 
@@ -81,12 +65,11 @@ function RightLoginCompany(props) {
 }
 
 const mapStateToProps = (state) => ({
-	authData: state?.loginCompany,
+	dataCompany: state?.loginCompany,
 });
 
 const mapDispatchToProp = (dispatch) => ({
-	setToken: (data) => dispatch({ type: "SET_TOKEN", data: data }),
-	setProfile: (data) => dispatch({ type: "SET_PROFILE", data: data }),
+	authRequestLoginCompany: (data) => dispatch(loginCompanyRequest(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProp)(RightLoginCompany);

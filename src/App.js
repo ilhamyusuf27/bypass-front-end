@@ -3,7 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
-import store from "./store";
+import { store, persistor } from "./redux/store";
+import { PersistGate } from "redux-persist/integration/react";
 
 import EmployeLogin from "./Pages/Login/EmployeLogin";
 import CompanyLogin from "./Pages/Login/CompanyLogin";
@@ -26,33 +27,35 @@ import Hire from "./Pages/Hire/Hire";
 function App() {
 	return (
 		<Provider store={store}>
-			<BrowserRouter>
-				<Routes>
-					{/* page with no navbar and footer */}
-					<Route element={<WithoutNavFooter />}>
-						<Route path="employee-login" element={<EmployeLogin />} />
-						<Route path="company-login" element={<CompanyLogin />} />
-						<Route path="option-login" element={<OptionLogin />} />
-						<Route path="register" element={<Register />} />
-						<Route path="*" element={<NotFound />} />
-						<Route path="register-company" element={<CompanyRegister />} />
-					</Route>
+			<PersistGate loading={null} persistor={persistor}>
+				<BrowserRouter>
+					<Routes>
+						{/* page with no navbar and footer */}
+						<Route element={<WithoutNavFooter />}>
+							<Route path="employee-login" element={<EmployeLogin />} />
+							<Route path="company-login" element={<CompanyLogin />} />
+							<Route path="option-login" element={<OptionLogin />} />
+							<Route path="register" element={<Register />} />
+							<Route path="*" element={<NotFound />} />
+							<Route path="register-company" element={<CompanyRegister />} />
+						</Route>
 
-					{/* page with navbar and footer */}
-					<Route element={<WithNavFooter />}>
-						<Route path="/" element={<LandingPage />} />
-						<Route path="/profile-company" element={<ProfileCompany />} />
-						<Route path="/edit-profile-company" element={<EditProfileCompany />} />
-						<Route path="/home" element={<Home />} />
-						<Route path="/profile-employee/:id" element={<ProfileEmployee />} />
-						<Route path="/" element={<LandingPage />} />
-						<Route path="/edit-profile-employee" element={<EditProfileEmployee />} />
-						<Route path="/chat" element={<Chat />} />
-						<Route path="/chat-isi" element={<ChatIsi />} />
-						<Route path="hire" element={<Hire />} />
-					</Route>
-				</Routes>
-			</BrowserRouter>
+						{/* page with navbar and footer */}
+						<Route element={<WithNavFooter />}>
+							<Route path="/" element={<LandingPage />} />
+							<Route path="/profile-company" element={<ProfileCompany />} />
+							<Route path="/edit-profile-company" element={<EditProfileCompany />} />
+							<Route path="/home" element={<Home />} />
+							<Route path="/profile-employee/:id" element={<ProfileEmployee />} />
+							<Route path="/" element={<LandingPage />} />
+							<Route path="/edit-profile-employee" element={<EditProfileEmployee />} />
+							<Route path="/chat" element={<Chat />} />
+							<Route path="/chat-isi" element={<ChatIsi />} />
+							<Route path="hire" element={<Hire />} />
+						</Route>
+					</Routes>
+				</BrowserRouter>
+			</PersistGate>
 		</Provider>
 	);
 }
