@@ -10,8 +10,7 @@ import { connect } from "react-redux";
 
 import axios from "axios";
 
-function RightRegister(props) {
-	console.log("props", props);
+function RightRegister() {
 	const navigate = useNavigate();
 	const [nama, setNama] = React.useState("");
 	const [email, setEmail] = React.useState("");
@@ -101,10 +100,12 @@ function RightRegister(props) {
 	);
 }
 
-const mapStateToProps = (state) => ({
-	registerData: state?.register,
-});
+export default RightRegister;
 
-const mapDispatchToProp = (dispatch) => ({});
+// const mapStateToProps = (state) => ({
+// 	registerData: state?.register,
+// });
 
-export default connect(mapStateToProps, mapDispatchToProp)(RightRegister);
+// const mapDispatchToProp = (dispatch) => ({});
+
+// export default connect(mapStateToProps, mapDispatchToProp)(RightRegister);

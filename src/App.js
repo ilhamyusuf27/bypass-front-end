@@ -5,7 +5,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
 
-import Login from "./Pages/Login/Login";
+import EmployeLogin from "./Pages/Login/EmployeLogin";
+import CompanyLogin from "./Pages/Login/CompanyLogin";
+import OptionLogin from "./Pages/Login/OptionLogin";
 import Home from "./Pages/Home/Home";
 import ProfileCompany from "./Pages/ProfileCompany/ProfileCompany";
 import EditProfileCompany from "./Pages/EditProfileCompany/EditProfileCompany";
@@ -28,7 +30,9 @@ function App() {
 				<Routes>
 					{/* page with no navbar and footer */}
 					<Route element={<WithoutNavFooter />}>
-						<Route path="login" element={<Login />} />
+						<Route path="employee-login" element={<EmployeLogin />} />
+						<Route path="company-login" element={<CompanyLogin />} />
+						<Route path="option-login" element={<OptionLogin />} />
 						<Route path="register" element={<Register />} />
 						<Route path="*" element={<NotFound />} />
 						<Route path="register-company" element={<CompanyRegister />} />
@@ -40,7 +44,7 @@ function App() {
 						<Route path="/profile-company" element={<ProfileCompany />} />
 						<Route path="/edit-profile-company" element={<EditProfileCompany />} />
 						<Route path="/home" element={<Home />} />
-						<Route path="/profile-employee" element={<ProfileEmployee />} />
+						<Route path="/profile-employee/:id" element={<ProfileEmployee />} />
 						<Route path="/" element={<LandingPage />} />
 						<Route path="/edit-profile-employee" element={<EditProfileEmployee />} />
 						<Route path="/chat" element={<Chat />} />

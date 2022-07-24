@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Badge, Button } from "react-bootstrap";
 import { GoLocation } from "react-icons/go";
+import { Link } from "react-router-dom";
 
 const EmployeesList = (props) => {
   const renderEmployeesList = () => {
@@ -43,7 +44,9 @@ const EmployeesList = (props) => {
             </div>
             <div className="col-md-7 d-flex justify-content-end align-items-center">
               <div className="col-md-2 ">
-                <Button variant="flat">Lihat Profile</Button>
+                <Link to={`/profile-employee/${item.id}`}>
+                  <Button variant="flat">Lihat Profile</Button>
+                </Link>
               </div>
             </div>
           </div>
