@@ -1,5 +1,6 @@
 import axios from "../../Axios/Axios";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 
 const defaultState = {
 	isLoading: false,
@@ -55,6 +56,10 @@ const loginCompanyRequest = ({ email, password }) => {
 				dispatch({
 					type: "SET_PROFILE",
 					data: res?.data?.data,
+				});
+				Swal.fire({
+					icon: "success",
+					title: "Login Sukses",
 				});
 			})
 			.catch((err) => {
