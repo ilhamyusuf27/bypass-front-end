@@ -59,6 +59,10 @@ const Navibar = (props) => {
 		}
 	};
 
+	const handleMsg = () => {
+		navigate("/chat-isi");
+	};
+
 	return (
 		<>
 			<div className="row">
@@ -86,7 +90,7 @@ const Navibar = (props) => {
 									</>
 								) : (
 									<>
-										<Nav.Link href="#deets">
+										<Nav.Link onClick={handleMsg}>
 											<img src={mailIcon} alt="" />
 										</Nav.Link>
 										<Nav.Link href="#deets">

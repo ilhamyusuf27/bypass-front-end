@@ -25,7 +25,7 @@ function Hire(props) {
 	const { id } = useParams();
 
 	React.useEffect(() => {
-		if (!props?.dataCompany?.profile?.role) {
+		if (!props?.dataCompany?.profile?.role || !localStorage.getItem("token")) {
 			navigate("/");
 		}
 	}, []);
