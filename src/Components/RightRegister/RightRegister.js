@@ -36,7 +36,7 @@ function RightRegister() {
 					icon: "success",
 					title: "Succseed",
 					text: res?.data,
-				}).then((result) => (result.isConfirmed ? navigate("/") : null));
+				}).then((result) => (result.isConfirmed ? navigate("/login") : null));
 			})
 			.catch((err) => {
 				setIsLoading(false);

@@ -32,6 +32,7 @@ function RightLogin() {
 				confirm_pass: confirmPass,
 			})
 			.then((res) => {
+				console.log(res);
 				Swal.fire({
 					icon: "success",
 					title: "Succseed",
