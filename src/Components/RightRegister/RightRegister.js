@@ -6,8 +6,6 @@ import "./RightRegister.css";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
-import { connect } from "react-redux";
-
 import axios from "axios";
 
 function RightRegister() {
