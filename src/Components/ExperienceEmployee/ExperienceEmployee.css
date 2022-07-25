@@ -1,0 +1,8 @@
+.months-span {
+  margin-left: 10px;
+  margin-right: 5px;
+}
+
+.hr-experience:last-of-type {
+  display: none;
+}

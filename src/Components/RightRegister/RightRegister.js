@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
-function RightLogin() {
+function RightRegister() {
 	const navigate = useNavigate();
 	const [nama, setNama] = React.useState("");
 	const [email, setEmail] = React.useState("");
@@ -34,7 +34,7 @@ function RightLogin() {
 					icon: "success",
 					title: "Succseed",
 					text: res?.data,
-				}).then((result) => (result.isConfirmed ? navigate("/") : null));
+				}).then((result) => (result.isConfirmed ? navigate("/login") : null));
 			})
 			.catch((err) => {
 				setIsLoading(false);
@@ -87,7 +87,7 @@ function RightLogin() {
 
 						<p>
 							Anda sudah punya akun?
-							<Link exact to="/register" className="link-register">
+							<Link exact to="/employee-login" className="link-register">
 								Masuk disini
 							</Link>
 						</p>
@@ -98,4 +98,12 @@ function RightLogin() {
 	);
 }
 
-export default RightLogin;
+export default RightRegister;
+
+// const mapStateToProps = (state) => ({
+// 	registerData: state?.register,
+// });
+
+// const mapDispatchToProp = (dispatch) => ({});
+
+// export default connect(mapStateToProps, mapDispatchToProp)(RightRegister);

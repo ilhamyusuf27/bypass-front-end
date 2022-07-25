@@ -3,8 +3,14 @@ import { Container, Row } from "react-bootstrap";
 import "./Register.css";
 import LeftRegister from "../../Components/LeftRegister/LeftRegister";
 import RightRegister from "../../Components/RightRegister/RightRegister";
-
+import { useNavigate } from "react-router";
 function Register() {
+	const navigate = useNavigate();
+	React.useEffect(() => {
+		if (localStorage.getItem("token")) {
+			navigate("/");
+		}
+	}, []);
 	return (
 		<>
 			<Container fluid className="App">
