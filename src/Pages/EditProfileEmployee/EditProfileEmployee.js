@@ -31,6 +31,11 @@ const EditProfileEmployee = () => {
   const [portofoliotype, setPortofolioType] = useState("");
   const [imgPortofolio, setImgPortofolio] = useState(null);
 
+  const [jobDesc, setJobDesc] = useState("");
+  const [address, setAddress] = useState("");
+  const [companyAddress, setCompanyAddress] = useState("");
+  const [descriptionBio, setDescriptionBio] = useState("");
+
   const userToken = localStorage.getItem("token");
   const idEmployee = useParams();
   const config = {
@@ -208,7 +213,31 @@ const EditProfileEmployee = () => {
       });
   };
 
-  // console.log("msgError", msgError);
+  // const handleSaveProfile = (e) => {
+  //   e.preventDefault();
+  //   const body = {
+  //     id_user: idEmployee.id,
+  //     job_title: jobDesc,
+  //     address: address,
+  //     tempat_kerja: companyAddress,
+  //     description: descriptionBio,
+  //     // job_type:
+  //   };
+
+  //   if (detailEmployee?.id_user === null) {
+  //     axios
+  //       .post(`${process.env.REACT_APP_URL_API}/detailUser/add`, body, config)
+  //       .then((res) => {
+  //         console.log(res);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   }
+  // };
+
+  console.log("triggerDetail", detailEmployee?.id_user);
+  console.log("detailEmployee", detailEmployee);
 
   return (
     <>
@@ -285,6 +314,7 @@ const EditProfileEmployee = () => {
                                 ? detailEmployee?.description
                                 : ""
                             }`}
+                            onChange={(e) => setJobDesc(e.target.value)}
                           />
                         </div>
                         <div className="mb-3">
@@ -299,6 +329,7 @@ const EditProfileEmployee = () => {
                                 ? detailEmployee?.address
                                 : ""
                             }`}
+                            onChange={(e) => setAddress(e.target.value)}
                           />
                         </div>
                         <div className="mb-3">
@@ -313,6 +344,7 @@ const EditProfileEmployee = () => {
                                 ? detailEmployee?.tempat_kerja
                                 : ""
                             }`}
+                            onChange={(e) => setCompanyAddress(e.target.value)}
                           />
                         </div>
                         <div className="mb-3">
@@ -330,6 +362,7 @@ const EditProfileEmployee = () => {
                                 : ""
                             }`}
                             style={{ height: "144px" }}
+                            onChange={(e) => setDescriptionBio(e.target.value)}
                           />
                         </div>
                       </form>
