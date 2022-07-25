@@ -11,6 +11,14 @@
   clip-path: circle();
 }
 
+.edit-profile-employee-img {
+  width: 220px;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  clip-path: circle();
+}
+
 /* card portofolio */
 .card-employee {
   width: 250px;

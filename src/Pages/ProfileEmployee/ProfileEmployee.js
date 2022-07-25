@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Button, Tab, Tabs, Container } from "react-bootstrap";
 import { GoLocation } from "react-icons/go";
 import "./ProfileEmployee.css";
-import logoCompany from "../../Assets/Images/logo-company.png";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import PortofolioEmployee from "../../Components/PortofolioEmployee/PortofolioEmployee";
 import LoadingPage from "../../Components/LoadingPage/LoadingPage";
 import NoDataComp from "../../Components/NoDataComp/NoDataComp";
@@ -23,6 +22,8 @@ const ProfileEmployee = () => {
   const [experience, setExperience] = useState([]);
 
   const idEmployee = useParams();
+  const userProfile = JSON.parse(localStorage?.getItem("data"));
+  const userToken = localStorage?.getItem("token");
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -111,6 +112,8 @@ const ProfileEmployee = () => {
       });
   };
 
+  console.log("skill", skills);
+
   return (
     <>
       {isLoading ? (
@@ -133,11 +136,15 @@ const ProfileEmployee = () => {
                       <div className="card-body mb-3">
                         <h5 className="card-title">{dataEmployee?.name}</h5>
                         <p>{detailEmployee?.job_title}</p>
-                        <p className="card-text">
-                          <small className="text-muted">
-                            <GoLocation /> {detailEmployee?.address}
-                          </small>
-                        </p>
+
+                        {detailEmployee?.address ? (
+                          <p className="card-text">
+                            <small className="text-muted">
+                              <GoLocation /> {detailEmployee?.address}
+                            </small>
+                          </p>
+                        ) : null}
+
                         <small className="text-muted">
                           {dataEmployee?.job_type}
                         </small>
@@ -146,16 +153,18 @@ const ProfileEmployee = () => {
                             {detailEmployee?.description}
                           </small>
                         </p>
-                        {dataEmployee?.is_hired ? (
-                          <Button
-                            variant="flat"
-                            style={{ width: "100%" }}
-                            size="lg"
-                            disabled
-                          >
-                            Already Hired
-                          </Button>
-                        ) : (
+
+                        {userProfile?.role === "user" ? (
+                          <Link to={`/edit-profile-employee/${idEmployee.id}`}>
+                            <Button
+                              variant="flat"
+                              style={{ width: "100%" }}
+                              size="lg"
+                            >
+                              Edit
+                            </Button>
+                          </Link>
+                        ) : !dataEmployee?.is_hired ? (
                           <Button
                             variant="flat"
                             style={{ width: "100%" }}
@@ -163,7 +172,15 @@ const ProfileEmployee = () => {
                           >
                             Hire
                           </Button>
-                        )}
+                        ) : dataEmployee?.is_hired ? (
+                          <Button
+                            variant="flat"
+                            style={{ width: "100%" }}
+                            size="lg"
+                          >
+                            Already Hired
+                          </Button>
+                        ) : null}
 
                         <div className="skills-badge-employee mt-4">
                           {skills?.length > 0 ? (
@@ -179,7 +196,9 @@ const ProfileEmployee = () => {
                               <AiOutlineMail /> {dataEmployee?.email}
                             </small>
                           </div>
-                          <SocialMediaEmployee data={socials} />
+                          {socials.length === 0 ? null : (
+                            <SocialMediaEmployee data={socials} />
+                          )}
                         </div>
                       </div>
                     </div>
