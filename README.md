@@ -1,8 +1,16 @@
-# Getting Started with Create React App
+# Getting Started with MyCareer App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About the project
+Merupakan platform pencarian kerja yang membantu menghubungkan recruiter dengan user yang sedang mencari pekerjaan.
 
-## Available Scripts
+### Build With
+-NodeJS
+-ExpressJS
+-ReactJS
+-ReactBootstrap
+-ReactSlick
+-PostgresSQL
+
 
 In the project directory, you can run:
 
@@ -29,7 +37,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+### npm run eject
 
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
