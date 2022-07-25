@@ -4,8 +4,6 @@ import "./ExperienceEmployee.css";
 import logoCompany from "../../Assets/Images/company.png";
 
 const ExperienceEmployee = (props) => {
-  console.log("props", props);
-
   const renderExperience = () => {
     let jsx = props?.data?.map((item) => {
       return (

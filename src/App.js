@@ -1,5 +1,6 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "react-datepicker/dist/react-datepicker.css";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -26,53 +27,62 @@ import EditProfileEmployee from "./Pages/EditProfileEmployee/EditProfileEmployee
 import Hire from "./Pages/Hire/Hire";
 
 function App() {
-	axios.interceptors.request.use(
-		function (config) {
-			if (localStorage.getItem("token")) {
-				config.headers = {
-					Authorization: `Bearer ${localStorage.getItem("token")}`,
-				};
-			}
-			return config;
-		},
-		function (error) {
-			// Do something with request error
-			return Promise.reject(error);
-		}
-	);
-	return (
-		<Provider store={store}>
-			<PersistGate loading={null} persistor={persistor}>
-				<BrowserRouter>
-					<Routes>
-						{/* page with no navbar and footer */}
-						<Route element={<WithoutNavFooter />}>
-							<Route path="employee-login" element={<EmployeLogin />} />
-							<Route path="company-login" element={<CompanyLogin />} />
-							<Route path="option-login" element={<OptionLogin />} />
-							<Route path="register" element={<Register />} />
-							<Route path="*" element={<NotFound />} />
-							<Route path="register-company" element={<CompanyRegister />} />
-						</Route>
+  axios.interceptors.request.use(
+    function (config) {
+      if (localStorage.getItem("token")) {
+        config.headers = {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        };
+      }
+      return config;
+    },
+    function (error) {
+      // Do something with request error
+      return Promise.reject(error);
+    }
+  );
+  return (
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter>
+          <Routes>
+            {/* page with no navbar and footer */}
+            <Route element={<WithoutNavFooter />}>
+              <Route path="employee-login" element={<EmployeLogin />} />
+              <Route path="company-login" element={<CompanyLogin />} />
+              <Route path="option-login" element={<OptionLogin />} />
+              <Route path="register" element={<Register />} />
+              <Route path="*" element={<NotFound />} />
+              <Route path="register-company" element={<CompanyRegister />} />
+            </Route>
 
-						{/* page with navbar and footer */}
-						<Route element={<WithNavFooter />}>
-							<Route path="/" element={<LandingPage />} />
-							<Route path="/profile-company" element={<ProfileCompany />} />
-							<Route path="/edit-profile-company" element={<EditProfileCompany />} />
-							<Route path="/home" element={<Home />} />
-							<Route path="/profile-employee/:id" element={<ProfileEmployee />} />
-							<Route path="/" element={<LandingPage />} />
-							<Route path="/edit-profile-employee" element={<EditProfileEmployee />} />
-							<Route path="/chat" element={<Chat />} />
-							<Route path="/chat-isi" element={<ChatIsi />} />
-							<Route path="/hire/:id" element={<Hire />} />
-						</Route>
-					</Routes>
-				</BrowserRouter>
-			</PersistGate>
-		</Provider>
-	);
+            {/* page with navbar and footer */}
+            <Route element={<WithNavFooter />}>
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/profile-company" element={<ProfileCompany />} />
+              <Route
+                path="/edit-profile-company"
+                element={<EditProfileCompany />}
+              />
+              <Route path="/home" element={<Home />} />
+              <Route
+                path="/profile-employee/:id"
+                element={<ProfileEmployee />}
+              />
+              <Route path="/" element={<LandingPage />} />
+              <Route
+                path="/edit-profile-employee/:id"
+                element={<EditProfileEmployee />}
+              />
+              <Route path="/chat" element={<Chat />} />
+              <Route path="/chat-isi" element={<ChatIsi />} />
+              <Route path="/hire/:id" element={<Hire />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </PersistGate>
+    </Provider>
+  );
 }
 
 export default App;
