@@ -31,6 +31,10 @@ const EditProfileEmployee = () => {
   const [portofoliotype, setPortofolioType] = useState("");
   const [imgPortofolio, setImgPortofolio] = useState(null);
 
+  const [saveImage, setSaveImage] = useState(null);
+  const [changeAvatar, setChangeAvatar] = useState(dataEmployee?.user_photo);
+  const [fullName, setFullName] = useState("");
+  const [jobTitle, setJobTitle] = useState("");
   const [jobDesc, setJobDesc] = useState("");
   const [address, setAddress] = useState("");
   const [companyAddress, setCompanyAddress] = useState("");
@@ -213,31 +217,123 @@ const EditProfileEmployee = () => {
       });
   };
 
-  // const handleSaveProfile = (e) => {
-  //   e.preventDefault();
-  //   const body = {
-  //     id_user: idEmployee.id,
-  //     job_title: jobDesc,
-  //     address: address,
-  //     tempat_kerja: companyAddress,
-  //     description: descriptionBio,
-  //     // job_type:
-  //   };
+  const handleImage = (e) => {
+    let image = e.target?.files[0];
+    let previewImg = e.target?.files[0];
+    // let nameImage = e.target?.files[0]?.name;
+    setChangeAvatar(URL.createObjectURL(previewImg));
+    setSaveImage(image);
+  };
 
-  //   if (detailEmployee?.id_user === null) {
-  //     axios
-  //       .post(`${process.env.REACT_APP_URL_API}/detailUser/add`, body, config)
-  //       .then((res) => {
-  //         console.log(res);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }
-  // };
+  const handleSaveProfile = (e) => {
+    e.preventDefault();
+    const body = {
+      id_user: idEmployee.id,
+      job_title: jobTitle,
+      job_type: jobDesc,
+      description: descriptionBio,
+      address: address,
+      tempat_kerja: companyAddress,
+    };
 
-  console.log("triggerDetail", detailEmployee?.id_user);
-  console.log("detailEmployee", detailEmployee);
+    const bodyUser = {
+      id: idEmployee.id,
+      name: fullName,
+    };
+
+    const formData = new FormData();
+    formData.append("id", idEmployee.id);
+    formData.append("profile", saveImage);
+
+    if (detailEmployee?.id_user === null) {
+      axios
+        .post(`${process.env.REACT_APP_URL_API}/detailUser/add`, body, config)
+        .then((res) => {
+          Swal.fire({
+            icon: "success",
+            text: "Profile Berhasil di edit",
+          });
+        })
+        .catch((err) => {
+          Swal.fire({
+            icon: "error",
+            title: "Gagal",
+            text: "Semua form harus terisi",
+          });
+        });
+
+      axios
+        .patch(`${process.env.REACT_APP_URL_API}/user/edit`, bodyUser, config)
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((error) => {
+          console.log("error edit name", error);
+        });
+
+      axios
+        .patch(
+          `${process.env.REACT_APP_URL_API}/user/editPhoto`,
+          formData,
+          config
+        )
+        .then((respons) => {
+          console.log(respons);
+        })
+        .catch((errors) => {
+          Swal.fire({
+            icon: "Gagal",
+            text: "File harus bertipe .img dan kapasitas maximum 1 MB",
+          });
+        });
+    } else {
+      axios
+        .patch(
+          `${process.env.REACT_APP_URL_API}/detailUser/update`,
+          body,
+          config
+        )
+        .then((res) => {
+          Swal.fire({
+            icon: "success",
+            text: "Profile Berhasil di edit",
+          });
+        })
+        .catch((err) => {
+          Swal.fire({
+            icon: "error",
+            title: "Gagal",
+            text: "Semua form harus terisi",
+          });
+        });
+
+      axios
+        .patch(`${process.env.REACT_APP_URL_API}/user/edit`, bodyUser, config)
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((error) => {
+          console.log("error edit name", error);
+        });
+
+      axios
+        .patch(
+          `${process.env.REACT_APP_URL_API}/user/editPhoto`,
+          formData,
+          config
+        )
+        .then((respons) => {
+          console.log(respons);
+        })
+        .catch((errors) => {
+          console.log("errors edit img", errors);
+        });
+    }
+  };
+
+  console.log(saveImage);
+  // console.log(isNaN(detailEmployee?.id_user));
+  // console.log("detailEmployee", detailEmployee);
 
   return (
     <>
@@ -250,12 +346,30 @@ const EditProfileEmployee = () => {
                   <div className="card">
                     <div className="text-center">
                       <img
-                        src={dataEmployee?.user_photo}
+                        src={
+                          !changeAvatar
+                            ? dataEmployee?.user_photo
+                            : changeAvatar
+                        }
                         className="card-img-top edit-profile-employee-img my-3"
                         alt="..."
                       />
                       <h4 className="text-muted">
-                        <MdModeEditOutline /> Edit
+                        <div className="image-upload">
+                          <label
+                            htmlFor="file-input"
+                            className="input-imgEmployee"
+                          >
+                            <MdModeEditOutline /> <span>Change Avatar</span>
+                          </label>
+                          <input
+                            id="file-input"
+                            onChange={handleImage}
+                            type="file"
+                            hidden
+                            className="input-imgEmployee"
+                          />
+                        </div>
                       </h4>
                     </div>
                     <div className="card-body mb-3">
@@ -277,7 +391,12 @@ const EditProfileEmployee = () => {
                     </div>
                   </div>
                   <div className="row button-edit-employee">
-                    <Button variant="flat" size="lg" className="mb-3">
+                    <Button
+                      variant="flat"
+                      size="lg"
+                      className="mb-3"
+                      onClick={handleSaveProfile}
+                    >
                       Simpan
                     </Button>
                     <Button variant="outline-flat" size="lg">
@@ -300,6 +419,22 @@ const EditProfileEmployee = () => {
                             type="text"
                             className="form-control form-control-lg"
                             placeholder={`${dataEmployee?.name}`}
+                            onChange={(e) => setFullName(e.target.value)}
+                          />
+                        </div>
+                        <div className="mb-3">
+                          <label className="form-label form-text">
+                            Job Title
+                          </label>
+                          <input
+                            type="text"
+                            className="form-control form-control-lg"
+                            placeholder={`${
+                              detailEmployee?.job_title
+                                ? detailEmployee?.job_title
+                                : ""
+                            }`}
+                            onChange={(e) => setJobTitle(e.target.value)}
                           />
                         </div>
                         <div className="mb-3">
@@ -310,8 +445,8 @@ const EditProfileEmployee = () => {
                             type="text"
                             className="form-control form-control-lg"
                             placeholder={`${
-                              detailEmployee?.description
-                                ? detailEmployee?.description
+                              detailEmployee?.job_type
+                                ? detailEmployee?.job_type
                                 : ""
                             }`}
                             onChange={(e) => setJobDesc(e.target.value)}
@@ -570,7 +705,7 @@ const EditProfileEmployee = () => {
             </div>
           </Container>
         </div>
-        <div className="row" style={{ minHeight: "1400px" }}></div>
+        <div className="row" style={{ minHeight: "1470px" }}></div>
       </div>
     </>
   );

@@ -4,19 +4,17 @@
 }
 
 .profile-employee-img {
-  width: 220px;
-  position: relative;
-  display: inline-block;
-  overflow: hidden;
-  clip-path: circle();
+  border-radius: 50% !important;
+  height: 200px;
+  width: 200px;
+  margin-left: 25px;
 }
 
 .edit-profile-employee-img {
-  width: 220px;
-  position: relative;
-  display: inline-block;
-  overflow: hidden;
-  clip-path: circle();
+  border-radius: 50% !important;
+  height: 200px;
+  width: 200px;
+  margin-left: 25px;
 }
 
 /* card portofolio */
