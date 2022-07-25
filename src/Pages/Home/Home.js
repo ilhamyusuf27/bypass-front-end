@@ -16,8 +16,6 @@ const Home = () => {
   const [isLoading, setIsloading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [dataPerPage] = useState(4);
-  const [nameSearch, setNameSearch] = useState(null);
-  const [searchByName, setSearchByName] = useState("");
 
   useEffect(() => {
     getDataEmployees();
@@ -40,10 +38,6 @@ const Home = () => {
   // change page
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
-  };
-
-  const handleSearch = (e) => {
-    e.preventDefault();
   };
 
   return (
