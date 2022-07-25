@@ -165,13 +165,15 @@ const ProfileEmployee = () => {
                             </Button>
                           </Link>
                         ) : !dataEmployee?.is_hired ? (
-                          <Button
-                            variant="flat"
-                            style={{ width: "100%" }}
-                            size="lg"
-                          >
-                            Hire
-                          </Button>
+                          <Link to={`/hire/${idEmployee.id}`}>
+                            <Button
+                              variant="flat"
+                              style={{ width: "100%" }}
+                              size="lg"
+                            >
+                              Hire
+                            </Button>
+                          </Link>
                         ) : dataEmployee?.is_hired ? (
                           <Button
                             variant="flat"

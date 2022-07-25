@@ -64,7 +64,8 @@
 /* button end*/
 
 .img-user-home {
-  clip-path: circle();
+  border-radius: 50% !important;
+  height: 150px;
   width: 150px;
   margin-left: 25px;
 }
