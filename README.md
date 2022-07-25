@@ -4,12 +4,12 @@
 Merupakan platform pencarian kerja yang membantu menghubungkan recruiter dengan user yang sedang mencari pekerjaan.
 
 ### Build With
--NodeJS
--ExpressJS
--ReactJS
--ReactBootstrap
--ReactSlick
--PostgresSQL
+-NodeJS\
+-ExpressJS\
+-ReactJS\
+-ReactBootstrap\
+-ReactSlick\
+-PostgresSQL\
 
 
 In the project directory, you can run:
