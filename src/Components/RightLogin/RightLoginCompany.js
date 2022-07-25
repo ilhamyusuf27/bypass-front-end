@@ -13,9 +13,11 @@ function RightLoginCompany(props) {
 	const [password, setPassword] = React.useState("");
 
 	React.useEffect(() => {
-		if (props?.dataCompany?.token) {
-			navigate("/home");
-		}
+		setTimeout(() => {
+			if (props?.dataCompany?.token) {
+				navigate("/home");
+			}
+		}, 1500);
 	}, [props.dataCompany]);
 
 	const handleLoginCompany = (e) => {
