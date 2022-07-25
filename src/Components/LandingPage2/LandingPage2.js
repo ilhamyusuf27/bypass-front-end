@@ -51,8 +51,8 @@ function LandingPage2() {
 						</Row>
 					</div>
 
-					<div>
-						<Row>
+					<div className="pb-5">
+						<Row className="mb-5">
 							<Col lg={6} className="d-flex align-items-center">
 								<div>
 									<h2>Skill Tallent</h2>

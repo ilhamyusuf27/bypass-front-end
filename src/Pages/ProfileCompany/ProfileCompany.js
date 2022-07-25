@@ -6,114 +6,143 @@ import { FiLinkedin } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./ProfileCompany.css";
+import LoadingPage from "../../Components/LoadingPage/LoadingPage";
 
-const Home = () => {
+const ProfilCompany = () => {
   const data = JSON.parse(localStorage.getItem("data"));
-  const city = data.company_city;
-  const description = data.company_description;
-  const instagram = data.company_instagram;
-  const linkedin = data.company_linkedin;
-  const name = data.company_name;
-  const rec_email = data.recruiter_email;
   const rec_id = data.recruiter_id;
-  const rec_name = data.recruiter_name;
-  const rec_phone = data.recruiter_phone;
-  const rec_photo = data.recruiter_photo;
-  const rec_position = data.recruiter_position;
-  const role = data.role;
-  const business_fields = data.business_fields;
+
+  const [isLoading, setIsloading] = useState(true);
+  const [dataCompany, setDataCompany] = useState([]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    getCompany();
+  }, []);
+
+  const getCompany = () => {
+    axios
+      .get(
+        `${process.env.REACT_APP_URL_API}/company/find/id?recruiter_id=${rec_id}`
+      )
+      .then((res) => {
+        setDataCompany(res?.data?.company[0]);
+        setIsloading(false);
+      })
+      .catch((err) => console.log(err));
+  };
 
   // const company_name = ;
   return (
     <>
-      <Container className="mb-5">
-        <Row>
-          <div className="col-lg-12 col-sm-12">
-            <div className="card hovercard mt-5">
-              <div className="cardheader"></div>
-              <div className="avatar-p-company">
-                <img
-                  src={rec_photo ?? "https://us.123rf.com/450wm/solarus/solarus2112/solarus211200026/178493166-default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available-.jpg"}
-                  alt=""
-                />
-              </div>
-              <div className="info">
-                <div className="title">
-                  <h2>{name}</h2>
-                  <small>{business_fields ?? "jenis bisnis"}</small>
+      {isLoading ? (
+        <>
+          <LoadingPage />
+          <div className="mb-5 mt-5" />
+        </>
+      ) : (
+        <Container className="mb-5">
+          <Row>
+            <div className="col-lg-12 col-sm-12">
+              <div className="card hovercard mt-5">
+                <div className="cardheader"></div>
+                <div className="avatar-p-company">
+                  <img
+                    src={
+                      dataCompany?.recruiter_photo ??
+                      "https://us.123rf.com/450wm/solarus/solarus2112/solarus211200026/178493166-default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available-.jpg"
+                    }
+                    alt=""
+                  />
                 </div>
-                <div className="desc">{city ?? "Kota"}</div>
-              </div>
-
-              <Container>
-                <Row>
-                  <Col md={{ span: 6, offset: 3 }}>
-                    <div className="desc pb-4">
-                      <small>
-                        {description ?? "Deskripsi"}
-                      </small>
-                    </div>
-                    <Link exact to="/edit-profile-company">
-                      <Button
-                        variant="primary"
-                        size="lg"
-                        className="button-edit"
-                      >
-                        Edit Profile
-                      </Button>
-                    </Link>
-                  </Col>
-                </Row>
-
-                <div className="row pt-5 pb-5 social">
-                  <Col md={{ span: 6, offset: 3 }}>
-                    <table>
-                      <tr>
-                        <td>
-                          {" "}
-                          <h3>
-                            <FaRegEnvelope />
-                          </h3>{" "}
-                        </td>
-                        <td className="px-3">{rec_email}</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          {" "}
-                          <h3>
-                            <FaInstagram />
-                          </h3>{" "}
-                        </td>
-                        <td className="px-3">{instagram}</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          {" "}
-                          <h3>
-                            <BsTelephone />
-                          </h3>{" "}
-                        </td>
-                        <td className="px-3">{rec_phone}</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          {" "}
-                          <h3>
-                            <FiLinkedin />
-                          </h3>{" "}
-                        </td>
-                        <td className="px-3">{linkedin}</td>
-                      </tr>
-                    </table>
-                  </Col>
+                <div className="info">
+                  <div className="title">
+                    <h2>{dataCompany?.company_name}</h2>
+                    <small>{dataCompany?.business_fields ?? "-"}</small>
+                  </div>
+                  <div className="desc">
+                    {dataCompany?.company_city ?? "-"}
+                  </div>
                 </div>
-              </Container>
+
+                <Container>
+                  <Row>
+                    <Col md={{ span: 6, offset: 3 }}>
+                      <div className="desc pb-4">
+                        <small>
+                          {dataCompany?.company_description ?? "-"}
+                        </small>
+                      </div>
+                      <Link exact to="/edit-profile-company">
+                        <Button
+                          variant="primary"
+                          size="lg"
+                          className="button-edit"
+                        >
+                          Edit Profile
+                        </Button>
+                      </Link>
+                    </Col>
+                  </Row>
+
+                  <div className="row pt-5 pb-5 social">
+                    <Col md={{ span: 6, offset: 3 }}>
+                      <table>
+                        <tr>
+                          <td>
+                            {" "}
+                            <h3>
+                              <FaRegEnvelope />
+                            </h3>{" "}
+                          </td>
+                          <td className="px-3">
+                            {dataCompany?.recruiter_email ?? "-"}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            {" "}
+                            <h3>
+                              <FaInstagram />
+                            </h3>{" "}
+                          </td>
+                          <td className="px-3">
+                            {dataCompany?.company_instagram ?? "-"}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            {" "}
+                            <h3>
+                              <BsTelephone />
+                            </h3>{" "}
+                          </td>
+                          <td className="px-3">
+                            {dataCompany?.recruiter_phone ?? "-"}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            {" "}
+                            <h3>
+                              <FiLinkedin />
+                            </h3>{" "}
+                          </td>
+                          <td className="px-3">
+                            {dataCompany?.company_linkedin ?? "-"}
+                          </td>
+                        </tr>
+                      </table>
+                    </Col>
+                  </div>
+                </Container>
+              </div>
             </div>
-          </div>
-        </Row>
-      </Container>
+          </Row>
+        </Container>
+      )}
     </>
   );
 };
 
-export default Home;
+export default ProfilCompany;
