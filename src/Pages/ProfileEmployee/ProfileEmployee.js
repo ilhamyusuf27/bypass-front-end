@@ -112,7 +112,7 @@ const ProfileEmployee = () => {
       });
   };
 
-  console.log("skill", skills);
+  console.log("useProfile", userProfile.role);
 
   return (
     <>

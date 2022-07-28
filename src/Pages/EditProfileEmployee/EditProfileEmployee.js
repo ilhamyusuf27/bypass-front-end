@@ -8,6 +8,8 @@ import { MdModeEditOutline } from "react-icons/md";
 import axios from "axios";
 import { useParams } from "react-router";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
+import SkillsUserEmployee from "../../Components/SkillsUserEmployee/SkillsUserEmployee";
 
 const EditProfileEmployee = () => {
   const [experience, setExperience] = useState([]);
@@ -123,8 +125,10 @@ const EditProfileEmployee = () => {
       .then((res) => {
         Swal.fire({
           icon: "success",
-          title: "Sukses",
-          text: "Skill Berhasil ditambah",
+          title: "Succseed",
+          text: res?.data,
+        }).then((result) => {
+          window.location.reload();
         });
       })
       .catch((err) => {
@@ -286,6 +290,8 @@ const EditProfileEmployee = () => {
             text: "File harus bertipe .img dan kapasitas maximum 1 MB",
           });
         });
+
+      window.location.href = `/edit-profile-employee/${idEmployee.id}`;
     } else {
       axios
         .patch(
@@ -331,8 +337,6 @@ const EditProfileEmployee = () => {
     }
   };
 
-  console.log(saveImage);
-  // console.log(isNaN(detailEmployee?.id_user));
   // console.log("detailEmployee", detailEmployee);
 
   return (
@@ -399,9 +403,17 @@ const EditProfileEmployee = () => {
                     >
                       Simpan
                     </Button>
-                    <Button variant="outline-flat" size="lg">
-                      Batal
-                    </Button>
+                    <Link
+                      to={`/profile-employee/${idEmployee.id}`}
+                      className="p-0"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <div className="d-grid gap-2">
+                        <Button variant="outline-flat" size="lg">
+                          Batal
+                        </Button>
+                      </div>
+                    </Link>
                   </div>
                 </div>
                 <div className="col-8">
@@ -516,11 +528,14 @@ const EditProfileEmployee = () => {
                               <input
                                 type="text"
                                 className="form-control form-control-lg"
-                                placeholder="Java"
+                                placeholder="Example: Java"
                                 onChange={(e) => setAddSkill(e.target.value)}
                               />
+                              <div className="mt-2">
+                                <SkillsUserEmployee dataSkills={skills} />
+                              </div>
                             </div>
-                            <div className="col-2 d-grid">
+                            <div className="col-2">
                               {isLoading ? (
                                 <Button
                                   variant="warning-flat"
