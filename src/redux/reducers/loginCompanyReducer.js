@@ -1,11 +1,11 @@
 import axios from "../../Axios/Axios";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router";
+import CryptoJS from "crypto-js";
 
 const defaultState = {
 	isLoading: false,
 	token: "",
-	profile: null,
+	profile: "",
 };
 
 const loginCompanyReducer = (state = defaultState, action) => {
@@ -19,7 +19,7 @@ const loginCompanyReducer = (state = defaultState, action) => {
 		case "SET_PROFILE": {
 			return {
 				...state,
-				profile: { ...action.data },
+				profile: action.data,
 			};
 		}
 		case "SET_LOADING": {
@@ -47,19 +47,25 @@ const loginCompanyRequest = ({ email, password }) => {
 				recruiter_password: password,
 			})
 			.then((res) => {
+				const data = JSON.stringify(res?.data?.data);
+				let ciphertext = CryptoJS.AES.encrypt(data, process.env.REACT_APP_SECRET_KEY).toString();
 				localStorage.setItem("token", res?.data?.token);
-				localStorage.setItem("data", JSON.stringify(res?.data?.data));
+				localStorage.setItem("data", ciphertext);
 				dispatch({
 					type: "SET_TOKEN",
 					data: res?.data?.token,
 				});
 				dispatch({
 					type: "SET_PROFILE",
-					data: res?.data?.data,
+					data: ciphertext,
 				});
 				Swal.fire({
 					icon: "success",
 					title: "Login Sukses",
+				});
+				dispatch({
+					type: "SET_LOADING",
+					data: false,
 				});
 			})
 			.catch((err) => {
