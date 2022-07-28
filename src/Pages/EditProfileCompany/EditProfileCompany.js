@@ -4,20 +4,27 @@ import Swal from "sweetalert2";
 import { BiMap } from "react-icons/bi";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import CryptoJS from "crypto-js";
 
 import "./EditProfileCompany.css";
 
 const EditProfileCompany = () => {
 	const navigate = useNavigate();
 
-	const data = JSON.parse(localStorage.getItem("data"));
+	// encrypt localStorage
+	const localData = localStorage.getItem("data");
+	const originalLocalData = localData ? JSON.parse(CryptoJS.AES.decrypt(localData, process.env.REACT_APP_SECRET_KEY).toString(CryptoJS.enc.Utf8)) : null;
+
+	const data = originalLocalData;
 	const rec_id = data.recruiter_id;
 
 	const getUpdateCompany = () => {
 		axios
 			.get(`${process.env.REACT_APP_URL_API}/company/find/id?recruiter_id=${rec_id}`)
 			.then((res) => {
-				localStorage.setItem("data", JSON.stringify(res?.data?.company[0]));
+				const data = JSON.stringify(res?.data?.company[0]);
+				let ciphertext = CryptoJS.AES.encrypt(data, process.env.REACT_APP_SECRET_KEY).toString();
+				localStorage.setItem("data", ciphertext);
 			})
 			.catch((err) => console.log(err));
 	};
@@ -36,7 +43,7 @@ const EditProfileCompany = () => {
 	const [isError, setIsError] = React.useState(false);
 
 	const handleSimpan = () => {
-		const token = localStorage.getItem("token_almnk");
+		const token = localStorage.getItem("token");
 
 		setIsLoading(true);
 
