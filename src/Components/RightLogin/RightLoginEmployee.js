@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import "./RightLogin.css";
+import CryptoJS from "crypto-js";
 
 function RightLogin() {
   const navigate = useNavigate();
@@ -15,40 +16,39 @@ function RightLogin() {
   const [msgErr, setMsgErr] = React.useState("");
   const [isError, setIsError] = React.useState(false);
 
-  const handleLogin = () => {
-    setIsLoading(true);
-    axios
-      .post("https://bypass-pijar.herokuapp.com/login", {
-        email,
-        password,
-      })
-      .then((res) => {
-        localStorage.setItem("token", res?.data?.token);
-        localStorage.setItem("data", JSON.stringify(res?.data?.user));
-        Swal.fire({
-          icon: "success",
-          title: "Succseed",
-          text: "Berhasil Login",
-        }).then((result) => (result.isConfirmed ? navigate("/") : null));
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        setIsError(true);
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: err?.response?.data,
-        });
-      });
-  };
-  return (
-    <>
-      <div className="col-sm-6">
-        <div className="px-5 py-5">
-          <FormTitle
-            title="Halo, Pewpeople"
-            desc="Login menggunakan akun yang telah didaftarkan"
-          />
+	const handleLogin = () => {
+		setIsLoading(true);
+		axios
+			.post("https://bypass-pijar.herokuapp.com/login", {
+				email,
+				password,
+			})
+			.then((res) => {
+				const data = JSON.stringify(res?.data?.user);
+				let ciphertext = CryptoJS.AES.encrypt(data, process.env.REACT_APP_SECRET_KEY).toString();
+				localStorage.setItem("token", res?.data?.token);
+				localStorage.setItem("data", ciphertext);
+				Swal.fire({
+					icon: "success",
+					title: "Succseed",
+					text: "Berhasil Login",
+				}).then((result) => (result.isConfirmed ? navigate("/") : null));
+			})
+			.catch((err) => {
+				setIsLoading(false);
+				setIsError(true);
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: err?.response?.data,
+				});
+			});
+	};
+	return (
+		<>
+			<div className="col-sm-6">
+				<div className="px-5 py-5">
+					<FormTitle title="Halo, Pewpeople" desc="Login menggunakan akun yang telah didaftarkan" />
 
           <Form onSubmit={(e) => e.preventDefault()}>
             <Form.Group className="mb-3 pt-4 text-left">

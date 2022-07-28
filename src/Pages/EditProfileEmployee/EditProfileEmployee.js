@@ -392,14 +392,14 @@ const EditProfileEmployee = () => {
                   </div>
                   <div className="row button-edit-employee">
                     <Button
-                      variant="flat"
+                      variant="flat text-bold"
                       size="lg"
-                      className="mb-3 text-bold"
+                      className="mb-3"
                       onClick={handleSaveProfile}
                     >
                       Simpan
                     </Button>
-                    <Button variant="outline-flat" size="lg" className="text-bold">
+                    <Button variant="outline-flat text-bold" size="lg">
                       Batal
                     </Button>
                   </div>
@@ -532,7 +532,7 @@ const EditProfileEmployee = () => {
                                 </Button>
                               ) : (
                                 <Button
-                                  variant="warning-flat"
+                                  variant="warning-flat text-bold"
                                   size="lg"
                                   onClick={handleAddSkills}
                                 >
@@ -625,7 +625,7 @@ const EditProfileEmployee = () => {
                           </Button>
                         ) : (
                           <Button
-                            variant="warning-flat"
+                            variant="warning-flat text-bold"
                             style={{ width: "100%" }}
                             size="lg"
                             className="mb-3"
@@ -637,7 +637,7 @@ const EditProfileEmployee = () => {
                       </form>
                       <hr />
                       <Button
-                        variant="outline-warning-flat"
+                        variant="outline-warning-flat text-bold"
                         style={{ width: "100%" }}
                         size="lg"
                         className="mb-3"

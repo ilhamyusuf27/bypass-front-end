@@ -11,6 +11,7 @@ import EmployeesList from "../../Components/EmployeesList/EmployeesList";
 import LoadingPage from "../../Components/LoadingPage/LoadingPage";
 import PaginationEmployees from "../../Components/PaginationEmployees/PaginationEmployees";
 import { useNavigate } from "react-router";
+import CryptoJS from "crypto-js";
 
 const Home = () => {
 	const navigate = useNavigate();
@@ -27,12 +28,16 @@ const Home = () => {
 	const [errMsg, setErrMsg] = useState("");
 	const [isError, setIsError] = useState(false);
 
+	// encrypt localStorage
+	const localData = localStorage.getItem("data");
+	const originalLocalData = localData ? JSON.parse(CryptoJS.AES.decrypt(localData, process.env.REACT_APP_SECRET_KEY).toString(CryptoJS.enc.Utf8)) : null;
+
 	useEffect(() => {
 		getDataEmployees();
 	}, []);
 
 	useEffect(() => {
-		if (JSON.parse(localStorage.getItem("data"))?.role === "user" || !localStorage.getItem("token")) {
+		if (originalLocalData.role === "user" || !localStorage.getItem("token")) {
 			navigate("/");
 		}
 	});
@@ -95,7 +100,7 @@ const Home = () => {
 				<Container>
 					<Form onSubmit={handleSearch}>
 						<InputGroup className="mb-3">
-							<Form.Control aria-label="Text input with dropdown button" size="lg" value={search} onChange={(e) => setSearch(e.target.value)} />
+							<Form.Control aria-label="Text input with dropdown button" className="text-bold" size="lg" value={search} onChange={(e) => setSearch(e.target.value)} />
 							<DropdownButton variant="light" title="Kategori" id="input-group-dropdown-2" align="end" disabled>
 								<Dropdown.Item href="#">Sortir Berdasarkan Nama</Dropdown.Item>
 								<Dropdown.Item href="#">Sortir Berdasarkan Skill</Dropdown.Item>
@@ -103,7 +108,7 @@ const Home = () => {
 								<Dropdown.Item href="#">Sortir Berdasarkan Freelance</Dropdown.Item>
 								<Dropdown.Item href="#">Sortir Berdasarkan Fulltime</Dropdown.Item>
 							</DropdownButton>
-							<Button variant="flat">Search</Button>
+							<Button variant="flat text-bold">Search</Button>
 						</InputGroup>
 					</Form>
 					{isLoading ? (

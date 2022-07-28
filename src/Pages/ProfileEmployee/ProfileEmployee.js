@@ -11,6 +11,7 @@ import SocialMediaEmployee from "../../Components/SocialMediaEmployee/SocialMedi
 import { AiOutlineMail } from "react-icons/ai";
 import SkillsUserEmployee from "../../Components/SkillsUserEmployee/SkillsUserEmployee";
 import ExperienceEmployee from "../../Components/ExperienceEmployee/ExperienceEmployee";
+import CryptoJS from "crypto-js";
 
 const ProfileEmployee = () => {
   const [isLoading, setIsloading] = useState(true);
@@ -22,7 +23,19 @@ const ProfileEmployee = () => {
   const [experience, setExperience] = useState([]);
 
   const idEmployee = useParams();
-  const userProfile = JSON.parse(localStorage?.getItem("data"));
+
+  // encrypt localStorage
+  const localData = localStorage.getItem("data");
+  const originalLocalData = localData
+    ? JSON.parse(
+        CryptoJS.AES.decrypt(
+          localData,
+          process.env.REACT_APP_SECRET_KEY
+        ).toString(CryptoJS.enc.Utf8)
+      )
+    : null;
+
+  const userProfile = originalLocalData;
   const userToken = localStorage?.getItem("token");
 
   useEffect(() => {
@@ -157,10 +170,9 @@ const ProfileEmployee = () => {
                         {userProfile?.role === "user" ? (
                           <Link to={`/edit-profile-employee/${idEmployee.id}`}>
                             <Button
-                              variant="flat"
+                              variant="flat text-bold"
                               style={{ width: "100%" }}
                               size="lg"
-                              className="text-bold"
                             >
                               Edit
                             </Button>
