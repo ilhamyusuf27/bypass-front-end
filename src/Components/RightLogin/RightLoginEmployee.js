@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import "./RightLogin.css";
+import CryptoJS from "crypto-js";
 
 function RightLogin() {
 	const navigate = useNavigate();
@@ -23,8 +24,10 @@ function RightLogin() {
 				password,
 			})
 			.then((res) => {
+				const data = JSON.stringify(res?.data?.user);
+				let ciphertext = CryptoJS.AES.encrypt(data, process.env.REACT_APP_SECRET_KEY).toString();
 				localStorage.setItem("token", res?.data?.token);
-				localStorage.setItem("data", JSON.stringify(res?.data?.user));
+				localStorage.setItem("data", ciphertext);
 				Swal.fire({
 					icon: "success",
 					title: "Succseed",

@@ -11,6 +11,7 @@ import EmployeesList from "../../Components/EmployeesList/EmployeesList";
 import LoadingPage from "../../Components/LoadingPage/LoadingPage";
 import PaginationEmployees from "../../Components/PaginationEmployees/PaginationEmployees";
 import { useNavigate } from "react-router";
+import CryptoJS from "crypto-js";
 
 const Home = () => {
 	const navigate = useNavigate();
@@ -27,12 +28,16 @@ const Home = () => {
 	const [errMsg, setErrMsg] = useState("");
 	const [isError, setIsError] = useState(false);
 
+	// encrypt localStorage
+	const localData = localStorage.getItem("data");
+	const originalLocalData = localData ? JSON.parse(CryptoJS.AES.decrypt(localData, process.env.REACT_APP_SECRET_KEY).toString(CryptoJS.enc.Utf8)) : null;
+
 	useEffect(() => {
 		getDataEmployees();
 	}, []);
 
 	useEffect(() => {
-		if (JSON.parse(localStorage.getItem("data"))?.role === "user" || !localStorage.getItem("token")) {
+		if (originalLocalData.role === "user" || !localStorage.getItem("token")) {
 			navigate("/");
 		}
 	});

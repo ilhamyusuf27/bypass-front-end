@@ -7,8 +7,17 @@ import mailIcon from "../../Assets/Images/mail.png";
 import bellIcon from "../../Assets/Images/bell.png";
 
 import { connect } from "react-redux";
+import CryptoJS from "crypto-js";
 
 const Navibar = (props) => {
+	// encrypt redux
+	const data = props?.dataCompany?.profile;
+	const originalData = data ? JSON.parse(CryptoJS.AES.decrypt(data, process.env.REACT_APP_SECRET_KEY).toString(CryptoJS.enc.Utf8)) : null;
+
+	// encrypt localStorage
+	const localData = localStorage.getItem("data");
+	const originalLocalData = localData ? JSON.parse(CryptoJS.AES.decrypt(localData, process.env.REACT_APP_SECRET_KEY).toString(CryptoJS.enc.Utf8)) : null;
+
 	const navigate = useNavigate();
 	const [isLogin, setIslogin] = useState(true);
 	const [user, setUser] = useState(null);
@@ -39,21 +48,21 @@ const Navibar = (props) => {
 	};
 
 	const handleProfile = () => {
-		if (props?.dataCompany?.profile?.role === "recruiter") {
+		if (originalData?.role === "recruiter") {
 			navigate("/profile-company");
-		} else if (JSON.parse(localStorage.getItem("data"))?.role === "user") {
-			navigate(`/profile-employee/${JSON.parse(localStorage.getItem("data")).id}`);
+		} else if (originalLocalData?.role === "user") {
+			navigate(`/profile-employee/${originalLocalData?.id}`);
 		}
 	};
 
 	const handleImage = () => {
-		if (props?.dataCompany?.profile?.role === "recruiter") {
+		if (originalData?.role === "recruiter") {
 			return (
 				props.dataCompany.recruiter_photo ??
 				"https://us.123rf.com/450wm/solarus/solarus2112/solarus211200026/178493166-default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available-.jpg"
 			);
-		} else if (JSON.parse(localStorage.getItem("data"))?.role === "user") {
-			return JSON.parse(localStorage.getItem("data")).user_photo;
+		} else if (originalLocalData?.role === "user") {
+			return originalLocalData.user_photo;
 		} else {
 			return userNavIcon;
 		}

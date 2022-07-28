@@ -7,11 +7,11 @@ import { useNavigate } from "react-router";
 
 const CompanyLogin = () => {
 	const navigate = useNavigate();
-	React.useEffect(() => {
-		if (localStorage.getItem("token")) {
-			navigate("/");
-		}
-	}, []);
+	// React.useEffect(() => {
+	// 	if (localStorage.getItem("token")) {
+	// 		navigate("/home");
+	// 	}
+	// }, []);
 	return (
 		<>
 			<Container fluid className="App">

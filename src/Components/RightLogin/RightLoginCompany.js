@@ -11,6 +11,7 @@ function RightLoginCompany(props) {
 	const navigate = useNavigate();
 	const [email, setEmail] = React.useState("");
 	const [password, setPassword] = React.useState("");
+	// console.log(props);
 
 	React.useEffect(() => {
 		setTimeout(() => {
