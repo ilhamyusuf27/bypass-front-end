@@ -18,7 +18,7 @@ const LandingPage1 = () => {
                   euismod ipsum et dui rhoncus auctor.
                 </p>
                 <Link to="/register-company">
-                  <Button variant="flat" size="lg">
+                  <Button variant="flat" size="lg" className="text-bold px-4">
                     Mulai Dari Sekarang
                   </Button>
                 </Link>

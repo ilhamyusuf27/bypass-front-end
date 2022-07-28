@@ -100,7 +100,7 @@ const Home = () => {
 				<Container>
 					<Form onSubmit={handleSearch}>
 						<InputGroup className="mb-3">
-							<Form.Control aria-label="Text input with dropdown button" size="lg" value={search} onChange={(e) => setSearch(e.target.value)} />
+							<Form.Control aria-label="Text input with dropdown button" className="text-bold" size="lg" value={search} onChange={(e) => setSearch(e.target.value)} />
 							<DropdownButton variant="light" title="Kategori" id="input-group-dropdown-2" align="end" disabled>
 								<Dropdown.Item href="#">Sortir Berdasarkan Nama</Dropdown.Item>
 								<Dropdown.Item href="#">Sortir Berdasarkan Skill</Dropdown.Item>
@@ -108,7 +108,7 @@ const Home = () => {
 								<Dropdown.Item href="#">Sortir Berdasarkan Freelance</Dropdown.Item>
 								<Dropdown.Item href="#">Sortir Berdasarkan Fulltime</Dropdown.Item>
 							</DropdownButton>
-							<Button variant="flat">Search</Button>
+							<Button variant="flat text-bold">Search</Button>
 						</InputGroup>
 					</Form>
 					{isLoading ? (

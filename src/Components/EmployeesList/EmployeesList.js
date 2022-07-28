@@ -45,7 +45,7 @@ const EmployeesList = (props) => {
             <div className="col-md-7 d-flex justify-content-end align-items-center">
               <div className="col-md-2 ">
                 <Link to={`/profile-employee/${item.id}`}>
-                  <Button variant="flat">Lihat Profile</Button>
+                  <Button variant="flat text-bold">Lihat Profile</Button>
                 </Link>
               </div>
             </div>

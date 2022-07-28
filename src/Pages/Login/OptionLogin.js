@@ -6,7 +6,7 @@ import "./Login.css";
 function OptionLogin() {
   return (
     <>
-      <Container fluid className="App bg-option">
+      <Container fluid className="App bg-option p-0">
         <div className="px-0">
           <div className="background">
             <div className="opacity"></div>

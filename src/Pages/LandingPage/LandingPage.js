@@ -29,7 +29,7 @@ const LandingPage = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-	dataCompany: state?.loginCompany,
+  dataCompany: state?.loginCompany,
 });
 
 const mapDispatchToProp = (dispatch) => ({});
