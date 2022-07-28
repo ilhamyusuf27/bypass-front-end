@@ -77,7 +77,7 @@ const ProfilCompany = () => {
                         <Button
                           variant="primary"
                           size="lg"
-                          className="button-edit"
+                          className="button-edit text-bold"
                         >
                           Edit Profile
                         </Button>

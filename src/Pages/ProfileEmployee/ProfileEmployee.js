@@ -160,6 +160,7 @@ const ProfileEmployee = () => {
                               variant="flat"
                               style={{ width: "100%" }}
                               size="lg"
+                              className="text-bold"
                             >
                               Edit
                             </Button>

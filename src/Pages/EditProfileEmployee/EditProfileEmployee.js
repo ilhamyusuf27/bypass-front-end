@@ -394,12 +394,12 @@ const EditProfileEmployee = () => {
                     <Button
                       variant="flat"
                       size="lg"
-                      className="mb-3"
+                      className="mb-3 text-bold"
                       onClick={handleSaveProfile}
                     >
                       Simpan
                     </Button>
-                    <Button variant="outline-flat" size="lg">
+                    <Button variant="outline-flat" size="lg" className="text-bold">
                       Batal
                     </Button>
                   </div>

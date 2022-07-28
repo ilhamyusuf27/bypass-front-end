@@ -46,14 +46,15 @@ function RightLoginCompany(props) {
 							<p className="text-right">Lupa Kata Sandi?</p>
 						</Link>
 
-						<div className="d-grid gap-2 mb-4">
-							<Button type="submit" size="md" className="btn-warning btn-login" onClick={handleLoginCompany} disabled={props.dataCompany.isLoading}>
+						<div className="d-grid gap-2 mb-4 mt-4">
+							<Button type="submit" size="lg" className="btn-warning btn-register-employee" onClick={handleLoginCompany} disabled={props.dataCompany.isLoading}>
 								{props.dataCompany.isLoading ? "Loading..." : "Masuk"}
 							</Button>
 						</div>
 
+					
 						<p>
-							Anda belum punya akun?
+							Anda belum punya akun? {' '}
 							<Link exact to="/register-company" className="link-register">
 								Daftar disini
 							</Link>

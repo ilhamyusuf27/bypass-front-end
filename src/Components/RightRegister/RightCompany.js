@@ -88,22 +88,22 @@ function RightLogin() {
 
 						<Form.Group className="mb-3 text-left">
 							<Form.Label>Kata Sandi</Form.Label>
-							<Form.Control type="password" size="lg" placeholder="Masukkan kata sandi" value={password} onChange={(e) => setPassword(e.target.value)} />
+							<Form.Control type="password" size="md" placeholder="Masukkan kata sandi" value={password} onChange={(e) => setPassword(e.target.value)} />
 						</Form.Group>
 
 						<Form.Group className="mb-3 text-left">
 							<Form.Label>Konfirmasi kata Sandi</Form.Label>
-							<Form.Control type="password" size="lg" placeholder="Masukkan konfirmasi kata sandi" value={confirmPass} onChange={(e) => setConfirmPass(e.target.value)} />
+							<Form.Control type="password" size="md" placeholder="Masukkan konfirmasi kata sandi" value={confirmPass} onChange={(e) => setConfirmPass(e.target.value)} />
 						</Form.Group>
 
-						<div className="d-grid gap-2 mb-4">
-							<Button type="submit" size="md" className="btn-warning btn-login" onClick={handleRegisterCompany} disabled={isLoading}>
+						<div className="d-grid gap-2 mb-4 mt-4">
+							<Button type="submit" size="md" className="btn-warning btn-register-employee" onClick={handleRegisterCompany} disabled={isLoading}>
 								{isLoading ? "Loading..." : "Daftar"}
 							</Button>
 						</div>
 
 						<p>
-							Anda sudah punya akun?
+							Anda sudah punya akun? {' '}
 							<Link exact to="/company-login" className="link-register">
 								Masuk disini
 							</Link>

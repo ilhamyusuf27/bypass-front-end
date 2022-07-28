@@ -49,6 +49,7 @@
 
 .login-as-employee {
   font-size: x-large;
+  font-weight: 500;
   background-color: #5e50a1;
   border-color: #5e50a1;
 }
@@ -64,6 +65,7 @@
 }
 
 .login-as-company {
+  font-weight: 500;
   font-size: x-large;
   color: white;
   border-color: white;

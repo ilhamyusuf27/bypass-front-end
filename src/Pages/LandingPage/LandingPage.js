@@ -8,23 +8,26 @@ import { connect } from "react-redux";
 import { useNavigate } from "react-router";
 
 const LandingPage = (props) => {
-	const navigate = useNavigate();
-	React.useEffect(() => {
-		if (props?.dataCompany?.profile?.role) {
-			navigate("/home");
-		}
-	}, []);
-	return (
-		<>
-			<LandingPage1 />
-			<LandingPage2 />
-			<LandingPage3 />
-		</>
-	);
+  React.useEffect(() => {
+    document.title = "My-Career - Temukan Talenta Terbaik";
+  });
+  const navigate = useNavigate();
+  React.useEffect(() => {
+    if (props?.dataCompany?.profile?.role) {
+      navigate("/home");
+    }
+  }, []);
+  return (
+    <>
+      <LandingPage1 />
+      <LandingPage2 />
+      <LandingPage3 />
+    </>
+  );
 };
 
 const mapStateToProps = (state) => ({
-	dataCompany: state?.loginCompany,
+  dataCompany: state?.loginCompany,
 });
 
 const mapDispatchToProp = (dispatch) => ({});
