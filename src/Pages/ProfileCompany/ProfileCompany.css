@@ -2,6 +2,40 @@
   background-color: #E5E5E5;
 }
 
+.button-none {
+  margin-top: -50px;
+  background-color: unset;
+  color: #262626;
+  border: none;
+}
+
+.button-none:hover {
+  background-color: unset;
+  color: black;
+  border: none;
+}
+
+.button-none:active {
+  background-color: unset;
+  color: black;
+  border: none;
+  box-shadow: none;
+}
+
+.button-none:focus {
+  background-color: unset;
+  color: black;
+  border: none;
+  box-shadow: none;
+}
+
+.button-none:active:focus {
+  background-color: unset;
+  color: black;
+  border: none;
+  box-shadow: none;
+}
+
 .bg-home-title {
     background-color: #5e50a1;
   }
@@ -279,4 +313,53 @@
     text-align: start;
   }
 
+  .modal-image {
+    display: flex;
+  }
 
+  .container-modal {
+    margin: auto;
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .errorMsg {
+    color: red;
+    font-size: 24px;
+    margin: 3px 0;
+  }
+
+  .imgPreview {
+    width: 100%;
+    height: 460px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .imgPreview input[type="file"] {
+    display: none;
+  }
+
+  .imgPreview .customFileUpload {
+    color: #54469c;
+    font-size: 22px;
+    font-weight: 500;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+
+  .rm-img {
+    border: none;
+    outline: none;
+    width: 100%;
+    margin: 10px 0 0 0;
+    padding: 14px 10px;
+    background-color: rgb(243, 92, 92);
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+  }
