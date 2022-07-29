@@ -24,7 +24,11 @@ const ProfileEmployee = () => {
 
 	const idEmployee = useParams();
 
-	const userProfile = localStorage.getItem("data");
+	// encrypt localStorage
+	const localData = localStorage.getItem("data");
+	const originalLocalData = localData ? JSON.parse(CryptoJS.AES.decrypt(localData, process.env.REACT_APP_SECRET_KEY).toString(CryptoJS.enc.Utf8)) : null;
+
+	const userProfile = originalLocalData;
 	const userToken = localStorage?.getItem("token");
 
 	useEffect(() => {
@@ -105,6 +109,7 @@ const ProfileEmployee = () => {
 	};
 
 	console.log("skill", skills);
+	console.log(dataEmployee);
 
 	return (
 		<>
