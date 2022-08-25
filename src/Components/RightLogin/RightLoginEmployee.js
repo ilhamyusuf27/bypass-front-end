@@ -7,21 +7,19 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import "./RightLogin.css";
 import CryptoJS from "crypto-js";
+import { useFormik } from "formik";
+import * as yup from "yup";
 
 function RightLogin() {
-  const navigate = useNavigate();
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [msgErr, setMsgErr] = React.useState("");
-  const [isError, setIsError] = React.useState(false);
+	const navigate = useNavigate();
+	const [isLoading, setIsLoading] = React.useState(false);
 
-	const handleLogin = () => {
+	const handleLogin = (values) => {
 		setIsLoading(true);
 		axios
 			.post("https://bypass-pijar.herokuapp.com/login", {
-				email,
-				password,
+				email: values.email,
+				password: values.password,
 			})
 			.then((res) => {
 				const data = JSON.stringify(res?.data?.user);
@@ -36,7 +34,6 @@ function RightLogin() {
 			})
 			.catch((err) => {
 				setIsLoading(false);
-				setIsError(true);
 				Swal.fire({
 					icon: "error",
 					title: "Oops...",
@@ -44,62 +41,65 @@ function RightLogin() {
 				});
 			});
 	};
+
+	const loginSchema = yup.object().shape({
+		email: yup.string().email("Please enter a valid email").required("Required"),
+		password: yup.string().min(6).max(20).required("Required"),
+	});
+
+	const { values, handleBlur, handleChange, handleSubmit, errors, touched } = useFormik({
+		initialValues: {
+			email: "",
+			password: "",
+		},
+		validationSchema: loginSchema,
+		onSubmit: handleLogin,
+	});
 	return (
 		<>
 			<div className="col-sm-6">
 				<div className="px-5 py-5">
 					<FormTitle title="Halo, Pewpeople" desc="Login menggunakan akun yang telah didaftarkan" />
 
-          <Form onSubmit={(e) => e.preventDefault()}>
-            <Form.Group className="mb-3 pt-4 text-left">
-              <Form.Label>E-Mail</Form.Label>
-              <Form.Control
-                type="email"
-                size="lg"
-                placeholder="Masukkan alamat email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </Form.Group>
+					<Form
+						onSubmit={(e) => {
+							e.preventDefault();
+							handleSubmit(e);
+						}}
+					>
+						<Form.Group className="mb-3 pt-4 text-left">
+							<Form.Label>E-Mail</Form.Label>
+							<Form.Control id="email" type="email" size="lg" placeholder="Masukkan alamat email" value={values.email} onChange={handleChange} onBlur={handleBlur} />
+							{errors.email && touched.email ? <p style={{ color: "red" }}>{errors.email}</p> : null}
+						</Form.Group>
 
-            <Form.Group className="mb-3 text-left">
-              <Form.Label>Kata Sandi</Form.Label>
-              <Form.Control
-                type="password"
-                size="lg"
-                placeholder="Masukkan kata sandi"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </Form.Group>
+						<Form.Group className="mb-3 text-left">
+							<Form.Label>Kata Sandi</Form.Label>
+							<Form.Control id="password" type="password" size="lg" placeholder="Masukkan kata sandi" value={values.password} onChange={handleChange} onBlur={handleBlur} />
+							{errors.password && touched.password ? <p style={{ color: "red" }}>{errors.password}</p> : null}
+						</Form.Group>
 
-            <Link exact to="/forgot-password" className="link-forget">
-              <p className="text-right">Lupa Kata Sandi?</p>
-            </Link>
+						<Link exact to="/forgot-password" className="link-forget">
+							<p className="text-right">Lupa Kata Sandi?</p>
+						</Link>
 
-            <div className="d-grid gap-2 mb-4">
-              <Button
-                type="submit"
-                size="lg"
-                className="btn-warning btn-register-employee"
-                onClick={handleLogin}
-                disabled={isLoading}
-              >
-                {isLoading ? "Loading..." : "Masuk"}
-              </Button>
-            </div>
+						<div className="d-grid gap-2 mb-4">
+							<Button type="submit" size="lg" className="btn-warning btn-register-employee" disabled={isLoading}>
+								{isLoading ? "Loading..." : "Masuk"}
+							</Button>
+						</div>
 
-            <p>
-              Anda belum punya akun? {' '}
-              <Link exact to="/register" className="link-register">
-                Daftar disini
-              </Link>
-            </p>
-          </Form>
-        </div>
-      </div>
-    </>
-  );
+						<p>
+							Anda belum punya akun?{" "}
+							<Link exact to="/register" className="link-register">
+								Daftar disini
+							</Link>
+						</p>
+					</Form>
+				</div>
+			</div>
+		</>
+	);
 }
 
 export default RightLogin;
