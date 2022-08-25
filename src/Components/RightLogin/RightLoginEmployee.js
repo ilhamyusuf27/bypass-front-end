@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Form, Button, Alert } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import FormTitle from "./FormTitile";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
