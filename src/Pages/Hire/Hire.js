@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 
 import { Button, Badge, Form } from "react-bootstrap";
@@ -18,14 +19,13 @@ function Hire(props) {
 	const dataToken = props?.dataCompany?.token;
 	const dataProfile = props?.dataCompany?.profile;
 	const originalData = dataProfile ? JSON.parse(CryptoJS.AES.decrypt(dataProfile, process.env.REACT_APP_SECRET_KEY).toString(CryptoJS.enc.Utf8)) : null;
-	console.log(originalData);
 
-	const [job, setJob] = React.useState("");
+	const [job, setJob] = React.useState("Project");
 	const [profile, setProfile] = React.useState([]);
 	const [skill, setSkill] = React.useState([]);
-	const [name, setName] = React.useState("");
-	const [email, setEmail] = React.useState("");
-	const [phone, setPhone] = React.useState("");
+	const [name] = React.useState(originalData ? originalData.recruiter_name : "");
+	const [email] = React.useState(originalData ? originalData.recruiter_email : "");
+	const [phone] = React.useState(originalData ? originalData.recruiter_phone : "");
 	const [desc, setDesc] = React.useState("");
 	const [isLoading, setIsLoading] = React.useState(false);
 	const { id } = useParams();
@@ -67,7 +67,6 @@ function Hire(props) {
 				}).then((result) => (result.isConfirmed ? navigate("/home") : null));
 			})
 			.catch((error) => {
-				console.log(error);
 				setIsLoading(false);
 				Swal.fire({
 					icon: "error",
@@ -89,23 +88,27 @@ function Hire(props) {
 							<div className="card-body mb-3">
 								<h5 className="card-title">{profile?.name}</h5>
 								<p>{profile?.job_title}</p>
-								<p className="card-text">
-									<small className="text-muted">
-										<GoLocation /> {profile?.address ?? "Location"}
-									</small>
-								</p>
+								{profile?.address ? (
+									<p className="card-text">
+										<small className="text-muted">
+											<GoLocation /> {profile?.address}
+										</small>
+									</p>
+								) : null}
 								<small className="text-muted">{profile?.job_type}</small>
 								<p className="card-text">
 									<small className="text-muted">{profile?.description}</small>
 								</p>
-								<div className="skills-badge-employee mt-4">
-									<h5>Skills</h5>
-									{skill.map((item) => (
-										<span className="skills-badge-home">
-											<Badge bg="warning">{item?.skill}</Badge>
-										</span>
-									))}
-								</div>
+								{skill.length ? (
+									<div className="skills-badge-employee mt-4">
+										<h5>Skills</h5>
+										{skill?.map((item) => (
+											<span className="skills-badge-home">
+												<Badge bg="warning">{item?.skill}</Badge>
+											</span>
+										))}
+									</div>
+								) : null}
 							</div>
 						</div>
 					</div>
@@ -116,7 +119,6 @@ function Hire(props) {
 							<Form.Group className="mb-4" controlId="formBasicEmail">
 								<Form.Text className="text-muted">Tujuan tentang pesan ini</Form.Text>
 								<Form.Select aria-label="Default select example" size="lg" onChange={(e) => setJob(e.target.value)}>
-									<option disabled>Pilihan</option>
 									<option value="Project">Project</option>
 									<option value="Job-Offer">Job-Offer</option>
 								</Form.Select>
@@ -124,17 +126,17 @@ function Hire(props) {
 
 							<Form.Group className="mb-4" controlId="fullname">
 								<Form.Text className="text-muted">Nama Lengkap</Form.Text>
-								<Form.Control type="text" placeholder="Masukan nama lengkap" size="lg" value={name} onChange={(e) => setName(e.target.value)} />
+								<Form.Control type="text" placeholder="Masukan nama lengkap" size="lg" value={name} disabled={originalData ? true : false} />
 							</Form.Group>
 
 							<Form.Group className="mb-4" controlId="email">
 								<Form.Text className="text-muted">Email</Form.Text>
-								<Form.Control type="email" placeholder="Masukan email" size="lg" value={email} onChange={(e) => setEmail(e.target.value)} />
+								<Form.Control type="email" placeholder="Masukan email" size="lg" value={email} disabled={originalData ? true : false} />
 							</Form.Group>
 
 							<Form.Group className="mb-4" controlId="phone-number">
 								<Form.Text className="text-muted">No Handphone</Form.Text>
-								<Form.Control type="email" placeholder="Masukan no handphone" size="lg" value={phone} onChange={(e) => setPhone(e.target.value)} />
+								<Form.Control type="email" placeholder="Masukan no handphone" size="lg" value={phone} disabled={originalData ? true : false} />
 							</Form.Group>
 
 							<Form.Group className="mb-5" controlId="exampleForm.ControlTextarea1">
@@ -143,8 +145,8 @@ function Hire(props) {
 							</Form.Group>
 
 							<div className="d-grid gap-2">
-								<Button variant="warning" size="lg" className="text-light" onClick={handleHire}>
-									Hire
+								<Button variant="warning" size="lg" className="text-light" onClick={handleHire} disabled={isLoading}>
+									{isLoading ? "Loading..." : "Hire"}
 								</Button>
 							</div>
 						</Form>
