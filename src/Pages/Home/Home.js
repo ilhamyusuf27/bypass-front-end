@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Home.css";
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
@@ -19,14 +17,14 @@ const Home = () => {
 	const [isLoading, setIsloading] = useState(true);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [dataPerPage] = useState(4);
-	const [currentPageSearch, setCurrentPageSearch] = useState(1);
+	const [currentPageSearch] = useState(1);
 	const [dataPerPageSearch] = useState(4);
-	const [nameSearch, setNameSearch] = useState(null);
 	const [search, setSearch] = useState("");
 	const [resultSearch, setResultSearch] = useState([]);
 	const [isClicked, setIsClicked] = useState(false);
 	const [errMsg, setErrMsg] = useState("");
 	const [isError, setIsError] = useState(false);
+	const [value, setValue] = useState("name");
 
 	// encrypt localStorage
 	const localData = localStorage.getItem("data");
@@ -67,21 +65,37 @@ const Home = () => {
 			setIsloading(false);
 			setIsClicked(false);
 		} else {
-			setIsClicked(true);
-			setIsloading(true);
-			axios
-				.get(`${process.env.REACT_APP_URL_API}/getAllProfile/findByJobtitle?job_title=${search}`)
-				.then((res) => {
-					setIsloading(false);
-					setIsError(false);
-					setResultSearch(res?.data?.profile);
-				})
-				.catch((err) => {
-					setIsloading(false);
-					setIsError(true);
-					setErrMsg(err?.response?.data);
-					// console.log(err?.response?.data);
-				});
+			if (value === "job") {
+				setIsClicked(true);
+				setIsloading(true);
+				axios
+					.get(`${process.env.REACT_APP_URL_API}/getAllProfile/findByJobtitle?job_title=${search}`)
+					.then((res) => {
+						setIsloading(false);
+						setIsError(false);
+						setResultSearch(res?.data?.profile);
+					})
+					.catch((err) => {
+						setIsloading(false);
+						setIsError(true);
+						setErrMsg(err?.response?.data);
+					});
+			} else if (value === "name") {
+				setIsClicked(true);
+				setIsloading(true);
+				axios
+					.get(`${process.env.REACT_APP_URL_API}/getAllProfile/findByName?name=${search}`)
+					.then((res) => {
+						setIsloading(false);
+						setIsError(false);
+						setResultSearch(res?.data?.profile);
+					})
+					.catch((err) => {
+						setIsloading(false);
+						setIsError(true);
+						setErrMsg(err?.response?.data);
+					});
+			}
 		}
 	};
 
@@ -100,15 +114,21 @@ const Home = () => {
 				<Container>
 					<Form onSubmit={handleSearch}>
 						<InputGroup className="mb-3">
-							<Form.Control aria-label="Text input with dropdown button" className="text-bold" size="lg" value={search} onChange={(e) => setSearch(e.target.value)} />
-							<DropdownButton variant="light" title="Kategori" id="input-group-dropdown-2" align="end" disabled>
-								<Dropdown.Item href="#">Sortir Berdasarkan Nama</Dropdown.Item>
-								<Dropdown.Item href="#">Sortir Berdasarkan Skill</Dropdown.Item>
-								<Dropdown.Item href="#">Sortir Berdasarkan Lokasi</Dropdown.Item>
-								<Dropdown.Item href="#">Sortir Berdasarkan Freelance</Dropdown.Item>
-								<Dropdown.Item href="#">Sortir Berdasarkan Fulltime</Dropdown.Item>
-							</DropdownButton>
-							<Button variant="flat text-bold">Search</Button>
+							<Form.Control aria-label="Text input with dropdown button" className="text-bold w-75" size="lg" value={search} onChange={(e) => setSearch(e.target.value)} />
+							<Form.Select onChange={(e) => setValue(e?.target?.value)}>
+								<option value="name">Nama</option>
+								<option value="job">Job</option>
+							</Form.Select>
+							{/* <DropdownButton variant="light" title="Kategori" id="input-group-dropdown-2" align="end">
+								<Dropdown.Item>Sortir Berdasarkan Nama</Dropdown.Item>
+								<Dropdown.Item>Sortir Berdasarkan Skill</Dropdown.Item>
+								<Dropdown.Item>Sortir Berdasarkan Lokasi</Dropdown.Item>
+								<Dropdown.Item>Sortir Berdasarkan Freelance</Dropdown.Item>
+								<Dropdown.Item>Sortir Berdasarkan Fulltime</Dropdown.Item>
+							</DropdownButton> */}
+							<Button variant="flat text-bold" type="submit">
+								Search
+							</Button>
 						</InputGroup>
 					</Form>
 					{isLoading ? (
