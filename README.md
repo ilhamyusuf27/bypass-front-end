@@ -183,13 +183,13 @@ Contributions are what make the open source community such an amazing place to b
 
 ## Related Project
 
-:rocket: [`Backend Recipenation`](https://github.com/ilhamyusuf27/bypass-back-end)
+:rocket: [`Backend MyCareer`](https://github.com/ilhamyusuf27/bypass-back-end)
 
-:rocket: [`Frontend Recipenation`](https://github.com/ilhamyusuf27/bypass-front-end)
+:rocket: [`Frontend MyCareer`](https://github.com/ilhamyusuf27/bypass-front-end)
 
 :rocket: [`API`](https://bypass-pijar.herokuapp.com)
 
-:rocket: [`Demo Recipenation`](https://my-career-32e87.web.app/)
+:rocket: [`Demo MyCareer`](https://my-career-32e87.web.app/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -233,6 +233,7 @@ Contributions are what make the open source community such an amazing place to b
           <sub>Back End Web Developer</sub>
         </a>
       </td>
+    </tr>
   </table>
 </center>
 
