@@ -21,6 +21,18 @@
     font-size: medium;
 }
 
+.btn-register-employee {
+    color: white;
+    font-weight: 500;
+    font-size: larger;
+}
+
+.btn-register-employee:hover {
+    color: white;
+    font-weight: 600;
+    background-color: #FBB017;
+}
+
 .btn-login:hover {
     color: white;
     font-size: larger;

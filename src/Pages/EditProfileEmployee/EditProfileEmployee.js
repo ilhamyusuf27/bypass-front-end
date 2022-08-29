@@ -8,10 +8,12 @@ import { MdModeEditOutline } from "react-icons/md";
 import axios from "axios";
 import { useParams } from "react-router";
 import Swal from "sweetalert2";
+import SkillsUserEmployee from "../../Components/SkillsUserEmployee/SkillsUserEmployee";
 
 const EditProfileEmployee = () => {
   const [experience, setExperience] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [show, setShow] = useState(false);
   const [dataEmployee, setDataEmployee] = useState([]);
@@ -126,6 +128,7 @@ const EditProfileEmployee = () => {
           title: "Sukses",
           text: "Skill Berhasil ditambah",
         });
+        getSkillsEmployee();
       })
       .catch((err) => {
         // setMsgError(err?.response?.data);
@@ -225,115 +228,63 @@ const EditProfileEmployee = () => {
     setSaveImage(image);
   };
 
-  const handleSaveProfile = (e) => {
-    e.preventDefault();
-    const body = {
-      id_user: idEmployee.id,
-      job_title: jobTitle,
-      job_type: jobDesc,
-      description: descriptionBio,
-      address: address,
-      tempat_kerja: companyAddress,
-    };
+  const handleSaveProfile = async (e) => {
+    setLoading(true);
+    try {
+      e.preventDefault();
+      const body = {
+        id: idEmployee.id,
+        name: fullName,
+        job_title: jobTitle,
+        address: address,
+        job_type: jobDesc,
+        description: descriptionBio,
+        workplace: companyAddress,
+      };
 
-    const bodyUser = {
-      id: idEmployee.id,
-      name: fullName,
-    };
+      console.log(companyAddress);
 
-    const formData = new FormData();
-    formData.append("id", idEmployee.id);
-    formData.append("profile", saveImage);
+      const formData = new FormData();
+      formData.append("id", idEmployee.id);
+      formData.append("profile", saveImage);
 
-    if (detailEmployee?.id_user === null) {
-      axios
-        .post(`${process.env.REACT_APP_URL_API}/detailUser/add`, body, config)
-        .then((res) => {
-          Swal.fire({
-            icon: "success",
-            text: "Profile Berhasil di edit",
-          });
-        })
-        .catch((err) => {
-          Swal.fire({
-            icon: "error",
-            title: "Gagal",
-            text: "Semua form harus terisi",
-          });
-        });
-
-      axios
-        .patch(`${process.env.REACT_APP_URL_API}/user/edit`, bodyUser, config)
-        .then((result) => {
-          console.log(result);
-        })
-        .catch((error) => {
-          console.log("error edit name", error);
-        });
-
-      axios
-        .patch(
+      const result = await Promise.allSettled([
+        axios.patch(
           `${process.env.REACT_APP_URL_API}/user/editPhoto`,
           formData,
           config
-        )
-        .then((respons) => {
-          console.log(respons);
-        })
-        .catch((errors) => {
-          Swal.fire({
-            icon: "Gagal",
-            text: "File harus bertipe .img dan kapasitas maximum 1 MB",
-          });
-        });
-    } else {
-      axios
-        .patch(
-          `${process.env.REACT_APP_URL_API}/detailUser/update`,
+        ),
+        axios.patch(
+          `${process.env.REACT_APP_URL_API}/user/edit-detail`,
           body,
           config
-        )
-        .then((res) => {
-          Swal.fire({
-            icon: "success",
-            text: "Profile Berhasil di edit",
-          });
-        })
-        .catch((err) => {
-          Swal.fire({
-            icon: "error",
-            title: "Gagal",
-            text: "Semua form harus terisi",
-          });
-        });
+        ),
+      ]);
 
-      axios
-        .patch(`${process.env.REACT_APP_URL_API}/user/edit`, bodyUser, config)
-        .then((result) => {
-          console.log(result);
-        })
-        .catch((error) => {
-          console.log("error edit name", error);
+      // if (result[0]?.status === "rejected") {
+      //   throw "Photo Profile harus bertipe .img, .jpg, .jpeg dan kapasitas maximum 1 MB";
+      // } else
+      if (result[1]?.status === "rejected") {
+        throw "Update Profile Failed";
+      } else {
+        Swal.fire({
+          icon: "success",
+          text: "Edit Profile Successfully",
         });
-
-      axios
-        .patch(
-          `${process.env.REACT_APP_URL_API}/user/editPhoto`,
-          formData,
-          config
-        )
-        .then((respons) => {
-          console.log(respons);
-        })
-        .catch((errors) => {
-          console.log("errors edit img", errors);
-        });
+        getUserEmployee();
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        text: error,
+      });
+      getUserEmployee();
+    } finally {
+      setLoading(false);
     }
   };
 
-  console.log(saveImage);
-  // console.log(isNaN(detailEmployee?.id_user));
-  // console.log("detailEmployee", detailEmployee);
+  console.log("skills ", skills);
 
   return (
     <>
@@ -392,14 +343,19 @@ const EditProfileEmployee = () => {
                   </div>
                   <div className="row button-edit-employee">
                     <Button
-                      variant="flat"
+                      variant="flat text-bold"
                       size="lg"
                       className="mb-3"
                       onClick={handleSaveProfile}
+                      disabled={loading}
                     >
-                      Simpan
+                      {loading ? (
+                        <Spinner animation="border" size="sm" />
+                      ) : (
+                        "Simpan"
+                      )}
                     </Button>
-                    <Button variant="outline-flat" size="lg">
+                    <Button variant="outline-flat text-bold" size="lg">
                       Batal
                     </Button>
                   </div>
@@ -475,8 +431,8 @@ const EditProfileEmployee = () => {
                             type="text"
                             className="form-control form-control-lg"
                             placeholder={`${
-                              detailEmployee?.tempat_kerja
-                                ? detailEmployee?.tempat_kerja
+                              detailEmployee?.workplace
+                                ? detailEmployee?.workplace
                                 : ""
                             }`}
                             onChange={(e) => setCompanyAddress(e.target.value)}
@@ -532,7 +488,7 @@ const EditProfileEmployee = () => {
                                 </Button>
                               ) : (
                                 <Button
-                                  variant="warning-flat"
+                                  variant="warning-flat text-bold"
                                   size="lg"
                                   onClick={handleAddSkills}
                                 >
@@ -540,6 +496,7 @@ const EditProfileEmployee = () => {
                                 </Button>
                               )}
                             </div>
+                            <SkillsUserEmployee dataSkills={skills} />
                           </div>
                         </div>
                       </form>
@@ -625,7 +582,7 @@ const EditProfileEmployee = () => {
                           </Button>
                         ) : (
                           <Button
-                            variant="warning-flat"
+                            variant="warning-flat text-bold"
                             style={{ width: "100%" }}
                             size="lg"
                             className="mb-3"
@@ -637,7 +594,7 @@ const EditProfileEmployee = () => {
                       </form>
                       <hr />
                       <Button
-                        variant="outline-warning-flat"
+                        variant="outline-warning-flat text-bold"
                         style={{ width: "100%" }}
                         size="lg"
                         className="mb-3"

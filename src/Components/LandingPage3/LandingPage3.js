@@ -17,6 +17,32 @@ function LandingPage2() {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 990,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
   };
   return (
     <>
@@ -171,7 +197,10 @@ function LandingPage2() {
                   <h1 className="text-white">Lorem ipsum dolor sit amet</h1>
                 </Col>
                 <Col md={{ span: 4, offset: 4 }}>
-                  <Button className="start-from-now">Mulai Dari Sekarang</Button>
+                  {/* <Button className="start-from-now">Mulai Dari Sekarang</Button> */}
+                  <Button size="lg" className="text-bold start-from-now px-4">
+                    Mulai Dari Sekarang
+                  </Button>
                 </Col>
               </Row>
             </Card.Body>

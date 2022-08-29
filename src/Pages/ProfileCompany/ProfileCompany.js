@@ -7,9 +7,21 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./ProfileCompany.css";
 import LoadingPage from "../../Components/LoadingPage/LoadingPage";
+import CryptoJS from "crypto-js";
 
 const ProfilCompany = () => {
-  const data = JSON.parse(localStorage.getItem("data"));
+  // encrypt localStorage
+  const localData = localStorage.getItem("data");
+  const originalLocalData = localData
+    ? JSON.parse(
+        CryptoJS.AES.decrypt(
+          localData,
+          process.env.REACT_APP_SECRET_KEY
+        ).toString(CryptoJS.enc.Utf8)
+      )
+    : null;
+
+  const data = originalLocalData;
   const rec_id = data.recruiter_id;
 
   const [isLoading, setIsloading] = useState(true);
@@ -60,24 +72,20 @@ const ProfilCompany = () => {
                     <h2>{dataCompany?.company_name}</h2>
                     <small>{dataCompany?.business_fields ?? "-"}</small>
                   </div>
-                  <div className="desc">
-                    {dataCompany?.company_city ?? "-"}
-                  </div>
+                  <div className="desc">{dataCompany?.company_city ?? "-"}</div>
                 </div>
 
                 <Container>
                   <Row>
                     <Col md={{ span: 6, offset: 3 }}>
                       <div className="desc pb-4">
-                        <small>
-                          {dataCompany?.company_description ?? "-"}
-                        </small>
+                        <small>{dataCompany?.company_description ?? "-"}</small>
                       </div>
                       <Link exact to="/edit-profile-company">
                         <Button
                           variant="primary"
                           size="lg"
-                          className="button-edit"
+                          className="button-edit text-bold"
                         >
                           Edit Profile
                         </Button>

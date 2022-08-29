@@ -22,15 +22,12 @@
 }
 
 .start-from-now {
-    font-weight: bold;
-    padding: 20px;
     color: #5e50a1;
     background-color: white;
     border-color: #5e50a1;
 }
 
 .start-from-now:hover {
-    font-weight: bold;
     color: white;
     background-color: rgb(251 176 23);
     border-color: #5e50a1;
