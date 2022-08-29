@@ -13,6 +13,7 @@ import SkillsUserEmployee from "../../Components/SkillsUserEmployee/SkillsUserEm
 const EditProfileEmployee = () => {
   const [experience, setExperience] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [show, setShow] = useState(false);
   const [dataEmployee, setDataEmployee] = useState([]);
@@ -228,6 +229,7 @@ const EditProfileEmployee = () => {
   };
 
   const handleSaveProfile = async (e) => {
+    setLoading(true);
     try {
       e.preventDefault();
       const body = {
@@ -277,6 +279,8 @@ const EditProfileEmployee = () => {
         text: error,
       });
       getUserEmployee();
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -343,8 +347,13 @@ const EditProfileEmployee = () => {
                       size="lg"
                       className="mb-3"
                       onClick={handleSaveProfile}
+                      disabled={loading}
                     >
-                      Simpan
+                      {loading ? (
+                        <Spinner animation="border" size="sm" />
+                      ) : (
+                        "Simpan"
+                      )}
                     </Button>
                     <Button variant="outline-flat text-bold" size="lg">
                       Batal
