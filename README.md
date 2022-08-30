@@ -124,42 +124,40 @@ REACT_APP_SECRET_KEY=6e3f8a254893e72859f29f1e047ddafba661365ca00d551f3e1a3c4dda7
 <p align="center" display=flex>
    
 <table>
- 
   <tr>
-    <td><image src="" alt="Login Page" width=100%></td>
-    <td><image src="" width=100%/></td>
+    <td><image src="https://res.cloudinary.com/dbi5h4hdg/image/upload/v1661828793/porto/MyCareer/login_vl2tkr.png" alt="Login Page" width=100%></td>
+    <td><image src="https://res.cloudinary.com/dbi5h4hdg/image/upload/v1661828796/porto/MyCareer/register_k4w9cu.png" width=100%/></td>
   </tr>
    <tr>
     <td>Login Page</td>
     <td>Register Page</td>
   </tr>
   <tr>
-    <td><image src="" alt="landing" width=100%></td>
-    <td><image src="" alt="Search" width=100%/></td>
+    <td><image src="https://res.cloudinary.com/dbi5h4hdg/image/upload/v1661828798/porto/MyCareer/landing_page_sthu1n.png" alt="landing" width=100%></td>
+    <td><image src="https://res.cloudinary.com/dbi5h4hdg/image/upload/v1661828793/porto/MyCareer/homepage_vtsyae.png" alt="Homepage" width=100%/></td>
   </tr>
   <tr>
     <td>Landing Page</td>
     <td>Home Page</td>
   </tr>
   <tr>
-    <td><image src="" width=100%></td>
-    <td><image src="" alt="Add Recipe" width=100%/></td>
+    <td><image src="https://res.cloudinary.com/dbi5h4hdg/image/upload/v1661828795/porto/MyCareer/profile_user_i0wt6i.png" width=100%></td>
+    <td><image src="https://res.cloudinary.com/dbi5h4hdg/image/upload/v1661828795/porto/MyCareer/edit_profile_user_vtdnvf.png" width=100%/></td>
   </tr>
   <tr>
     <td>Profile User</td>
     <td>Edit Profile User</td>
   </tr>
   <tr>
-    <td><image src="" width=100%></td>
-    <td><image src="" width=100%></td>
+    <td><image src="https://res.cloudinary.com/dbi5h4hdg/image/upload/v1661828792/porto/MyCareer/profile_company_j9ur3v.png" width=100%></td>
+    <td><image src="https://res.cloudinary.com/dbi5h4hdg/image/upload/v1661828790/porto/MyCareer/edit_profile_company_cbqcvp.png" width=100%/></td>
   </tr>
   <tr>
     <td>Profile Company</td>
     <td>Edit Profile Company</td>
   </tr>
   <tr>
-    <td><image src="" width=100%></td>
-    <td><image src="" width=100%></td>
+    <td><image src="https://res.cloudinary.com/dbi5h4hdg/image/upload/v1661828791/porto/MyCareer/hireuser_rpvio6.png" width=100%></td>
   </tr>
   <tr>
     <td>Hire User</td>
@@ -183,13 +181,13 @@ Contributions are what make the open source community such an amazing place to b
 
 ## Related Project
 
-:rocket: [`Backend Recipenation`](https://github.com/ilhamyusuf27/bypass-back-end)
+:rocket: [`Backend MyCareer`](https://github.com/ilhamyusuf27/bypass-back-end)
 
-:rocket: [`Frontend Recipenation`](https://github.com/ilhamyusuf27/bypass-front-end)
+:rocket: [`Frontend MyCareer`](https://github.com/ilhamyusuf27/bypass-front-end)
 
 :rocket: [`API`](https://bypass-pijar.herokuapp.com)
 
-:rocket: [`Demo Recipenation`](https://my-career-32e87.web.app/)
+:rocket: [`Demo MyCareer`](https://my-career-32e87.web.app/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
