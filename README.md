@@ -149,8 +149,8 @@ REACT_APP_SECRET_KEY=6e3f8a254893e72859f29f1e047ddafba661365ca00d551f3e1a3c4dda7
     <td>Edit Profile User</td>
   </tr>
   <tr>
-    <td><image src="https://res.cloudinary.com/dbi5h4hdg/image/upload/v1661828792/porto/MyCareer/profile_company_j9ur3v.png" width=100%></td>
-    <td><image src="https://res.cloudinary.com/dbi5h4hdg/image/upload/v1661828790/porto/MyCareer/edit_profile_company_cbqcvp.png" width=100%/></td>
+    <td><image src="https://res.cloudinary.com/dbi5h4hdg/image/upload/v1662309845/porto/MyCareer/screencapture-my-career-32e87-web-app-profile-company-2022-09-04-23_43_24_xmola1.png" width=100%></td>
+    <td><image src="https://res.cloudinary.com/dbi5h4hdg/image/upload/v1662309879/porto/MyCareer/screencapture-my-career-32e87-web-app-edit-profile-company-2022-09-04-23_44_11_jrzhox.png" width=100%/></td>
   </tr>
   <tr>
     <td>Profile Company</td>
